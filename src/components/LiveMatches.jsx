@@ -6,7 +6,11 @@ const LiveMatches = ({ liveMatches }) => {
 
   return (
     <div className="bg-gray-200 w-[100%] rounded-lg p-4 shadow-2xl min-h-screen">
-      {liveMatches &&
+      {liveMatches && liveMatches.length === 0 ? (
+        <div className="h-screen
+        flex justify-center items-center text-black">No match is being played at the momemt.</div>
+      ) : (
+        liveMatches &&
         liveMatches.map((match, index) => {
           return (
             <div className="w-[100%]" key={index}>
@@ -41,19 +45,21 @@ const LiveMatches = ({ liveMatches }) => {
                                       event.Esd.toString().slice(8, 15)
                                   ).format("HH:mm")}
                                 </span>
-                              ) : 
-                                event.Eps === "HT" ? <div className="items-center flex ">
-                                <span className=" mr-2  w-2 h-2"></span>
-                                <span className="text-red-500 ">
-                                  {event.Eps}
-                                </span>
-                              </div> :<div className="items-center flex ">
+                              ) : event.Eps === "HT" ? (
+                                <div className="items-center flex ">
+                                  <span className=" mr-2  w-2 h-2"></span>
+                                  <span className="text-red-500 ">
+                                    {event.Eps}
+                                  </span>
+                                </div>
+                              ) : (
+                                <div className="items-center flex ">
                                   <span className="text-green-500 animate-ping opacity-100 rounded-full mr-2 bg-green-500 w-2 h-2"></span>
                                   <span className="text-green-500 ">
                                     {event.Eps}
                                   </span>
                                 </div>
-                              }
+                              )}
                             </div>
                           </div>
 
@@ -64,7 +70,9 @@ const LiveMatches = ({ liveMatches }) => {
                                 src={imageUrl + event.T1[0].Img}
                                 alt=""
                               />
-                              <span className="whitespace-nowrap">{event.T1[0].Nm}</span>
+                              <span className="whitespace-nowrap">
+                                {event.T1[0].Nm}
+                              </span>
                             </div>
 
                             <div className="flex items-center">
@@ -73,7 +81,9 @@ const LiveMatches = ({ liveMatches }) => {
                                 src={imageUrl + event.T2[0].Img}
                                 alt=""
                               />
-                              <span className="whitespace-nowrap">{event.T2[0].Nm}</span>
+                              <span className="whitespace-nowrap">
+                                {event.T2[0].Nm}
+                              </span>
                             </div>
                           </div>
 
@@ -101,7 +111,8 @@ const LiveMatches = ({ liveMatches }) => {
               </div>
             </div>
           );
-        })}
+        })
+      )}
     </div>
   );
 };

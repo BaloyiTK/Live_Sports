@@ -5,11 +5,12 @@ import { fetchLeagueTable } from "../api";
 const Table = () => {
   const competitionName = useSelector((state) => state.competitionName.name);
   const [table, setTable] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const cachedTableData = localStorage.getItem("table");
+        const cachedTableData = localStorage.getItem("tables");
         if (cachedTableData) {
           const tableData = JSON.parse(cachedTableData);
           if (isValidTableData(tableData)) {
@@ -26,6 +27,8 @@ const Table = () => {
         }
       } catch (error) {
         console.error("Error fetching table data:", error);
+      } finally {
+        setLoading(false);
       }
     };
 
@@ -45,26 +48,28 @@ const Table = () => {
   };
 
   return (
-    <div className="border border-gray-500 rounded-t-lg">
-      <div className="overflow-x-auto rounded-t-lg">
-        <table className="min-w-full table-fixed border-b rounded-y-lg">
-          <thead className="text-white bg-slate-600">
-            <tr>
-              <th className="py-1 text-center">#</th>
-              <th className="py-1">Team</th>
-              <th className="py-1 text-center">P</th>
-              <th className="py-1 text-center">W</th>
-              <th className="py-1 text-center">D</th>
-              <th className="py-1 text-center">L</th>
-              <th className="py-1 text-center">F</th>
-              <th className="py-1 text-center">A</th>
-              <th className="py-1 text-center">GD</th>
-              <th className="py-1 text-center">PTS</th>
-            </tr>
-          </thead>
-          <tbody>
-            {table &&
-              table.map((team, index) => (
+    <div className="border border-gray-500 rounded-t-lg min-h-screen">
+      {loading ? ( // Show loading state
+        <div>Loading...</div>
+      ) : (
+        <div className="overflow-x-auto rounded-t-lg">
+          <table className="min-w-full table-fixed border-b rounded-y-lg">
+            <thead className="text-white bg-slate-600">
+              <tr>
+                <th className="py-1 text-center">#</th>
+                <th className="py-1">Team</th>
+                <th className="py-1 text-center">P</th>
+                <th className="py-1 text-center">W</th>
+                <th className="py-1 text-center">D</th>
+                <th className="py-1 text-center">L</th>
+                <th className="py-1 text-center">F</th>
+                <th className="py-1 text-center">A</th>
+                <th className="py-1 text-center">GD</th>
+                <th className="py-1 text-center">PTS</th>
+              </tr>
+            </thead>
+            <tbody>
+              {table.map((team, index) => (
                 <tr
                   key={index}
                   className="hover:bg-gray-700 transition-all border-b border-gray-500 text-gray-400 hover:text-gray-200 cursor-pointer"
@@ -81,9 +86,10 @@ const Table = () => {
                   <td className="py-1 text-center">{team.pts}</td>
                 </tr>
               ))}
-          </tbody>
-        </table>
-      </div>
+            </tbody>
+          </table>
+        </div>
+      )}
     </div>
   );
 };

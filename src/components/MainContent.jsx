@@ -8,7 +8,7 @@ import { useSelector } from "react-redux";
 import Table from "./Table";
 import CustomDatePicker from "./DatePicker"; // Import the DatePicker component
 import Tabs from "./Tabs";
-import MatchesByLeague from "./MatchesByLeague";
+import MatchesByLeague from "./LeagueFixture";
 import LeagueResults from "./LeagueResults";
 
 const MainContent = ({ onDateChange }) => {
@@ -168,7 +168,7 @@ const MainContent = ({ onDateChange }) => {
         <div className="w-full flex items-center">
           {tabs.map((tab) => (
             <span
-              className="m-1 hover:bg-red-900 hover:text-white"
+              className="m-1  hover:text-white"
               key={tab.id}
             >
               <Tabs

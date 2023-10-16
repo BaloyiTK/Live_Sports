@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import moment from "moment";
 import { fetchMatchesByLeague } from "../api";
 
-const MatchesByLeague = ({ competitionCountry, competitionLeague }) => {
+const LeagueFixture = ({ competitionCountry, competitionLeague }) => {
 const [matches, setMatches] = useState();
   const [table, setTable] = useState();
   const imageUrl = "https://lsm-static-prod.livescore.com/medium/";
@@ -18,7 +18,7 @@ const [matches, setMatches] = useState();
 
   useEffect(() => {
     const fetchData = async () => {
-      const cachedMatchesData = localStorage.getItem("matchesbyleague");
+      const cachedMatchesData = localStorage.getItem("matchesbyleagues");
       if (cachedMatchesData) {
         const leagueData = JSON.parse(cachedMatchesData);
         console.log(leagueData);
@@ -66,7 +66,7 @@ const [matches, setMatches] = useState();
                             ).format("YYYY-MM-DD")}
                           </span>
                           <div
-                            className="mb-2 flex items-center bg-slate-900 w-[100%] rounded-lg text-gray-300 hover-bg-slate-500"
+                            className="mb-2 flex items-center bg-slate-900 w-[100%] rounded-lg text-gray-300 hover:bg-slate-500"
                             key={index}
                           >
                             <div className="p-5 w-[] ">
@@ -107,22 +107,7 @@ const [matches, setMatches] = useState();
                                 </span>
                               </div>
                             </div>
-                            <div className="w-[50%]  flex justify-end mr-10 ">
-                              <div className="grid">
-                                <div className="font-bold text-base items-center mb-2">
-                                  <span className="text-red-400 m-1">
-                                    {event.Trp1}
-                                  </span>
-                                  <span> {event.Tr1}</span>
-                                </div>
-                                <div className=" font-bold text-base items-center">
-                                  <span className="text-red-400 p-1">
-                                    {event.Trp2}
-                                  </span>
-                                  <span> {event.Tr2}</span>
-                                </div>
-                              </div>
-                            </div>
+                         
                           </div>
                         </div>
                       );
@@ -137,4 +122,4 @@ const [matches, setMatches] = useState();
   );
 };
 
-export default MatchesByLeague;
+export default LeagueFixture;

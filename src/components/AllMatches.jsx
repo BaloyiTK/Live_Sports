@@ -5,8 +5,10 @@ const AllMatches = ({ allMatches }) => {
   const imageUrl = "https://lsm-static-prod.livescore.com/medium/";
 
   return (
-    <div className="bg-gray-200 w-[100%] rounded-lg p-4 shadow-2xl min-h-screen text-sm ">
-      {allMatches &&
+    <div className="bg-gray-200 w-[100%] rounded-lg md:p-4 shadow-2xl min-h-screen text-sm ">
+      {
+      
+      allMatches &&
         allMatches.map((match, index) => {
           return (
             <div className="w-[100%]" key={index}>
@@ -31,8 +33,8 @@ const AllMatches = ({ allMatches }) => {
                           className="mb-2 flex items-center bg-slate-900 w-[100%] rounded-lg text-gray-300 hover:bg-slate-500"
                           key={index}
                         >
-                          <div className="p-5 w-[] ">
-                            <div>
+                          <div className="flex justify-center w-[30%]">
+                          
                               {event.Eps === "NS" ? (
                                 <span>
                                   {moment(
@@ -44,10 +46,10 @@ const AllMatches = ({ allMatches }) => {
                               ) : (
                                 <span>{event.Eps}</span>
                               )}
-                            </div>
+                           
                           </div>
 
-                          <div className="grid w-[100%] ">
+                          <div className="grid w-[100%] overflow-x-hidden ">
                             <div className="flex items-center mb-2">
                               <img
                                 className="w-[20px] h-[20px] mr-2 "
@@ -71,7 +73,7 @@ const AllMatches = ({ allMatches }) => {
                             </div>
                           </div>
 
-                          <div className="w-[50%]  flex justify-end mr-10 ">
+                          <div className="w-[25%] md:w-[50%]  flex justify-end mr-5 md:mr-10 ">
                             <div className="grid">
                               <div className="font-bold text-base items-center mb-2">
                                 <span className="text-red-400 m-1">

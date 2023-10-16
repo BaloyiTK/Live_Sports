@@ -51,13 +51,13 @@ function App() {
       </header>
       <main className="container w-full md:w-[80%] mx-auto">
         <div className="flex md:mt-5">
-          <div className="w-[25%] hidden md:block">
+          <div className="w-[20%] hidden md:block">
             <Leagues leagues={leagues} />
           </div>
           <div className="w-full md:w-[50%]">
             <MainContent onDateChange={handleDateChange} />
           </div>
-          <div className="w-[25%] hidden md:block">
+          <div className="w-[30%] hidden md:block">
             <News news={news} />
           </div>
         </div>

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { IoIosSearch, IoIosClose, IoIosArrowBack } from "react-icons/io";
 
-import { useSelector, useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 import { competitionNameActions } from "../store";
 
 const Leagues = ({ leagues }) => {
@@ -9,7 +9,6 @@ const Leagues = ({ leagues }) => {
   const [selectedLeague, setSelectedLeague] = useState();
   const [countryFlag, setCountryFlag] = useState();
   const [leagueIndex, setLeagueIndex] = useState("");
-  // const [competitionSelected, setCompetitionSelected] = useState(false);
   const [selectedCompetition, setSelectedCompetition] = useState();
   const [queriedLeague, setQueriedLeague] = useState("");
   const [competitionName, setCompetitionName] = useState("");
@@ -61,12 +60,12 @@ const Leagues = ({ leagues }) => {
     const filteredLeagues = filterLeagues();
 
     return (
-      <ul>
+      <ul className="mt-2">
         {filteredLeagues &&
           filteredLeagues.map((league, index) => (
             <div
               key={index}
-              className="flex items-center cursor-pointer h-fit m-1"
+              className="flex items-center cursor-pointer h-fit mb-2 "
               onClick={() => handleLeagueClick(league, index)}
             >
               <div className="w-[10%]">
@@ -77,9 +76,9 @@ const Leagues = ({ leagues }) => {
                 />
               </div>
 
-              <li className="list-none w-[90%] overflow-hidden whitespace-nowrap  md:text-lg">
-                {league.Cnm.length > 18
-                  ? `${league.Cnm.substring(0, 18)}...`
+              <li className="list-none w-[90%] ml-2 overflow-hidden whitespace-nowrap">
+                {league.Cnm.length > 22
+                  ? `${league.Cnm.substring(0, 22)}...`
                   : league.Cnm}
               </li>
             </div>
@@ -108,7 +107,7 @@ const Leagues = ({ leagues }) => {
     };
 
     return (
-      <div>
+      <div className="mt-2">
         {selectedLeague?.map((competition, index) => {
           // Check if the competition name is unique before rendering
           if (!uniqueCompetitionNames.has(competition.Sdn)) {
@@ -116,20 +115,22 @@ const Leagues = ({ leagues }) => {
             if (competition.Shi === 0) {
               return (
                 <div
-                  className="flex items-center cursor-pointer"
+                  className="flex items-center cursor-pointer mb-2"
                   key={index}
                   onClick={() => handleCompetitionClick(competition)}
                 >
-                  <div className="w-[15%]">
+                  <div className="w-[10%]">
                     <img
-                      className="w-[20px] h-[10px] m-1 rounded-sm"
+                      className="w-[20px] h-[10px] rounded-sm"
                       src={`https://static.livescore.com/i2/fh/${countryFlag}.jpg`}
                       alt={competition.Sdn}
                     />
                   </div>
 
-                  <li className="list-none w-[80%] overflow-hidden whitespace-nowrap">
-                    {competition.Sdn}
+                  <li className="list-none w-[80%] ml-2 overflow-hidden whitespace-nowrap">
+                    {competition.Sdn.length > 22
+                      ? `${competition.Sdn.substring(0, 22)}...`
+                      : competition.Sdn}
                   </li>
                 </div>
               );
@@ -142,11 +143,11 @@ const Leagues = ({ leagues }) => {
   };
 
   return (
-    <div className="hidden md:block min-h-screen  mx-auto p-4 bg-gray-800 rounded-md shadow-2xl text-white text">
+    <div className="hidden md:block min-h-screen  mx-auto p-4 bg-gray-800 rounded-md shadow-2xl text-white text-sm">
       <h3 className="font-bold pb-2">Leagues</h3>
 
       {/* Search bar */}
-      <div className="relative ">
+      <div className="relative w-[100%] ">
         {selectedLeague ? (
           // Back button
           <div
@@ -161,7 +162,7 @@ const Leagues = ({ leagues }) => {
           </div>
         ) : (
           // Search icon
-          <div className="absolute inset-y-0 left-2 flex items-center pl- text-gray-600">
+          <div className="absolute inset-y-0 left-2 flex items-center  text-gray-600">
             <IoIosSearch className="text-xl" />
           </div>
         )}
@@ -177,7 +178,7 @@ const Leagues = ({ leagues }) => {
             className="absolute inset-y-0 right-12 flex items-center  text-white cursor-pointer"
             onClick={handleClear}
           >
-            <IoIosClose className="text-3xl font-extrabold text-black" />
+            <IoIosClose className="absolute left-7 text-3xl font-extrabold text-black" />
           </div>
         )}
       </div>
