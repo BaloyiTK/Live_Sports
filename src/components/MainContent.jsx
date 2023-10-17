@@ -95,7 +95,7 @@ const MainContent = ({ onDateChange }) => {
 
         switch (selectedTab) {
           case "all":
-            const cachedAllData = localStorage.getItem("allMatchess");
+            const cachedAllData = localStorage.getItem("allMatches");
             if (cachedAllData) {
               const { Stages } = JSON.parse(cachedAllData);
               setAllMatches(Stages);
