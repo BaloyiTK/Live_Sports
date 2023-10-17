@@ -48,7 +48,7 @@ const Leagues = ({ leagues }) => {
   };
 
   return (
-    <div className="hidden md:block min-h-screen mx-auto p-4 bg-gray-800 rounded-md shadow-2xl text-white text-sm">
+    <div className="hidden md:block min-h-screen mx-auto p-4 bg-gray-900 rounded-md shadow-2xl text-white text-sm">
       <h3 className="font-bold pb-2">Leagues</h3>
 
       <SearchBar
