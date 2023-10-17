@@ -16,7 +16,7 @@ function Navbar() {
         <a href="/" className="text-xl  md:text-3xl font-bold">
           <div className="flex justify-center items-center ">
             {" "}
-            L<span className="italic mx-1 text-red-500">i</span>ve{" "}
+            L<span className="italic text-red-500">i</span>ve{" "}
             <span className="ml-1">
               <FaFutbol className=""/>
             </span>
