@@ -146,7 +146,7 @@ const MainContent = ({ onDateChange }) => {
   };
 
   return (
-    <div className="p-4  bg-gray-900 text-white mx-1 rounded-lg">
+    <div className="p-2 md:p-4  bg-gray-900 text-white md:mx-1 md:rounded-lg">
       <div className=" bg-gray-700 p-2 text-sm font-semibold">
         {competitionName && (
           <div className="flex items-center p-">

@@ -5,7 +5,7 @@ const LiveMatches = ({ liveMatches }) => {
   const imageUrl = "https://lsm-static-prod.livescore.com/medium/";
 
   return (
-    <div className="bg-gray-200 w-[100%] rounded-lg p-4 shadow-2xl min-h-screen">
+    <div className="bg-gray-200 w-[100%] rounded-lg md:p-4 shadow-2xl min-h-screen text-sm ">
       {liveMatches && liveMatches.length === 0 ? (
         <div className="h-screen
         flex justify-center items-center text-black">No match is being played at the momemt.</div>
@@ -16,11 +16,11 @@ const LiveMatches = ({ liveMatches }) => {
             <div className="w-[100%]" key={index}>
               <div className="m-3 flex items-center">
                 <img
-                  className="w-[30px] h-[15px] rounded-sm pr-2"
+                  className="w-[30px] h-[15px] rounded-sm pr-2 mt-2"
                   src={`https://static.livescore.com/i2/fh/${match.Ccd}.jpg`}
                   alt=""
                 />
-                <div className="grid">
+                <div className="grid mt-2">
                   <span className="font-bold text-gray-800">{match.Cnm}</span>
                   <span className="text-xs text-gray-500">{match.Snm}</span>
                 </div>
@@ -32,11 +32,11 @@ const LiveMatches = ({ liveMatches }) => {
                     return (
                       <div key={index}>
                         <div
-                          className="mb-2 flex items-center bg-slate-800 w-[100%] rounded-lg text-gray-300 hover:bg-slate-500"
+                          className="mb-2 flex items-center bg-slate-900 w-[100%] rounded-lg text-gray-300 hover:bg-slate-500"
                           key={index}
                         >
-                          <div className="p-5 w-[30%] ">
-                            <div>
+                        
+                            <div className="flex justify-center w-[30%]">
                               {event.Eps === "NS" ? (
                                 <span>
                                   {moment(
@@ -61,9 +61,9 @@ const LiveMatches = ({ liveMatches }) => {
                                 </div>
                               )}
                             </div>
-                          </div>
+                       
 
-                          <div className="grid w-[100%] ">
+                            <div className="grid w-[100%] overflow-x-hidden ">
                             <div className="flex items-center mb-2">
                               <img
                                 className="w-[20px] h-[20px] mr-2 "
@@ -87,7 +87,7 @@ const LiveMatches = ({ liveMatches }) => {
                             </div>
                           </div>
 
-                          <div className="w-[50%]  flex justify-end mr-10 ">
+                          <div className="w-[25%] md:w-[50%]  flex justify-end mr-5 md:mr-10 ">
                             <div className="grid">
                               <div className="font-bold text-base items-center mb-2">
                                 <span className="text-red-400 m-1">

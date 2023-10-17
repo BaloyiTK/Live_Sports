@@ -18,7 +18,7 @@ const [matches, setMatches] = useState();
 
   useEffect(() => {
     const fetchData = async () => {
-      const cachedMatchesData = localStorage.getItem("matchesbyleagues");
+      const cachedMatchesData = localStorage.getItem("matchesbyleague");
       if (cachedMatchesData) {
         const leagueData = JSON.parse(cachedMatchesData);
         console.log(leagueData);

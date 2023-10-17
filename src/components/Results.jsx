@@ -1,18 +1,15 @@
 import React from "react";
 
 const Results = ({ results }) => {
-
   const imageUrl = "https://lsm-static-prod.livescore.com/medium/";
 
   return (
-    <div className="bg-gray-200 rounded-lg p-4 shadow-2xl min-h-screen">
+    <div className="bg-gray-200 w-[100%] rounded-lg md:p-4 shadow-2xl min-h-screen text-sm ">
       {results &&
         results.map((match, index) => {
           const relevantEvents = match.Events.filter(
             (event) =>
-              event.Eps === "FT" ||
-              event.Eps === "AET" ||
-              event.Eps === "AP"
+              event.Eps === "FT" || event.Eps === "AET" || event.Eps === "AP"
           );
 
           return (
@@ -40,30 +37,30 @@ const Results = ({ results }) => {
                           className="mb-2 flex items-center bg-slate-900 w-[100%] rounded-lg text-gray-300 hover:bg-slate-500"
                           key={index}
                         >
-                          <div className="p-5 w-[30%] ">
-                            <div>
-                              {event.Eps === "FT" ||
-                                event.Eps === "Postp." ||
-                                event.Eps === "AET" ||
-                                event.Eps === "AP" ||
-                                event.Eps === "Canc." ||
-                                event.Eps === "AAW" ||
-                                event.Eps === "Aband." ? (
-                                <span>{event.Eps}</span>
-                              ) : (
-                                <span></span>
-                              )}
-                            </div>
+                          <div className="flex justify-center w-[30%]">
+                            {event.Eps === "FT" ||
+                            event.Eps === "Postp." ||
+                            event.Eps === "AET" ||
+                            event.Eps === "AP" ||
+                            event.Eps === "Canc." ||
+                            event.Eps === "AAW" ||
+                            event.Eps === "Aband." ? (
+                              <span>{event.Eps}</span>
+                            ) : (
+                              null
+                            )}
                           </div>
 
-                          <div className="grid w-[100%] ">
+                          <div className="grid w-[100%] overflow-x-hidden ">
                             <div className="flex items-center mb-2">
                               <img
                                 className="w-[20px] h-[20px] mr-2 "
                                 src={imageUrl + event.T1[0].Img}
                                 alt=""
                               />
-                              <span className="whitespace-nowrap">{event.T1[0].Nm}</span>
+                              <span className="whitespace-nowrap">
+                                {event.T1[0].Nm}
+                              </span>
                             </div>
 
                             <div className="flex items-center">
@@ -72,14 +69,16 @@ const Results = ({ results }) => {
                                 src={imageUrl + event.T2[0].Img}
                                 alt=""
                               />
-                              <span className="whitespace-nowrap">{event.T2[0].Nm}</span>
+                              <span className="whitespace-nowrap">
+                                {event.T2[0].Nm}
+                              </span>
                             </div>
                           </div>
 
-                          <div className="w-[50%]  flex justify-end mr-10 ">
+                          <div className="w-[25%] md:w-[50%]  flex justify-end mr-5 md:mr-10 ">
                             <div className="grid">
                               <div className="font-bold text-base items-center mb-2">
-                                <span className="text-red-400 m-1 ">
+                                <span className="text-red-400 m-1">
                                   {event.Trp1}
                                 </span>
                                 <span> {event.Tr1}</span>

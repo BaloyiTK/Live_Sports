@@ -14,11 +14,11 @@ const AllMatches = ({ allMatches }) => {
             <div className="w-[100%]" key={index}>
               <div className="m-3 flex items-center">
                 <img
-                  className="w-[30px] h-[15px] rounded-sm pr-2 shadow-2xl"
+                  className="w-[30px] h-[15px] rounded-sm pr-2 shadow-2xl mt-2"
                   src={`https://static.livescore.com/i2/fh/${match.Ccd}.jpg`}
                   alt=""
                 />
-                <div className="grid">
+                <div className="grid mt-2">
                   <span className="font-bold text-gray-800">{match.Cnm}</span>
                   <span className="text-xs text-gray-500">{match.Snm}</span>
                 </div>

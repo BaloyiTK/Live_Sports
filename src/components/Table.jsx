@@ -10,7 +10,7 @@ const Table = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const cachedTableData = localStorage.getItem("tables");
+        const cachedTableData = localStorage.getItem("table");
         if (cachedTableData) {
           const tableData = JSON.parse(cachedTableData);
           if (isValidTableData(tableData)) {
