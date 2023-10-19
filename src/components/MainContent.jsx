@@ -95,7 +95,7 @@ const MainContent = ({ onDateChange }) => {
 
         switch (selectedTab) {
           case "all":
-            const cachedAllData = localStorage.getItem("allMatches");
+            const cachedAllData = localStorage.getItem("allMatchess");
             if (cachedAllData) {
               const { Stages } = JSON.parse(cachedAllData);
               setAllMatches(Stages);
@@ -118,7 +118,7 @@ const MainContent = ({ onDateChange }) => {
             break;
 
           case "results":
-            const cachedResultsData = localStorage.getItem("allMatches");
+            const cachedResultsData = localStorage.getItem("allMatchess");
             if (cachedResultsData) {
               const { Stages } = JSON.parse(cachedResultsData);
               setMatchesResults(Stages);

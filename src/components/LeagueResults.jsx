@@ -18,7 +18,7 @@ const LeagueResults = ({ competitionCountry, competitionLeague }) => {
 
   useEffect(() => {
     const fetchData = async () => {
-      const cachedMatchesData = localStorage.getItem("matchesbyleague");
+      const cachedMatchesData = localStorage.getItem("matchesbyleagues");
       if (cachedMatchesData) {
         const leagueData = JSON.parse(cachedMatchesData);
         console.log(leagueData);

@@ -50,7 +50,7 @@ function App() {
         localStorage.setItem("leagues", JSON.stringify(matchesData));
       }
 
-      const cachedNewsData = localStorage.getItem("news");
+      const cachedNewsData = localStorage.getItem("newss");
       if (cachedNewsData) {
         const newsData = JSON.parse(cachedNewsData);
         setNews(newsData.topStories);
