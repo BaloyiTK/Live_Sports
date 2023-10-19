@@ -14,15 +14,18 @@ const Leagues = ({ leagues }) => {
   const [ccd, setCcd] = useState("");
   const dispatch = useDispatch();
 
+  console.log(leagues)
+
   const handleClear = () => {
     setSearchTerm("");
   };
 
   const handleBack = () => {
-    setSelectedLeague("");
-    setSearchTerm(queriedLeague); // Update the search term to the selected competition
-    setQueriedLeague("");
-    dispatch(competitionNameActions.setCompetitionName());
+    setSearchTerm("");
+    setSelectedLeague();
+    //setSearchTerm(queriedLeague); // Update the search term to the selected competition
+   //  setQueriedLeague("");
+    dispatch(competitionNameActions.setCompetitionName(""));
   };
 
   const handleLeagueClick = (league, index) => {
@@ -48,7 +51,7 @@ const Leagues = ({ leagues }) => {
   };
 
   return (
-    <div className="hidden md:block min-h-screen mx-auto p-4 bg-gray-900 rounded-md shadow-2xl text-white text-sm">
+    <div className=" min-h-screen mx-auto p-4 bg-gray-900 rounded-md shadow-2xl text-white text-sm">
       <h3 className="font-bold pb-2">Leagues</h3>
 
       <SearchBar

@@ -1,6 +1,11 @@
 import React from "react";
 
 const LeagueList = ({ leagues, searchTerm, handleLeagueClick }) => {
+
+  //console.log('Type of leagues:', typeof leagues);
+
+  console.log(leagues)
+
   const filteredLeagues =
     leagues &&
     leagues.filter((league) =>
