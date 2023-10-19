@@ -37,15 +37,7 @@ const LiveMatches = ({ liveMatches }) => {
                         >
                         
                             <div className="flex justify-center w-[30%]">
-                              {event.Eps === "NS" ? (
-                                <span>
-                                  {moment(
-                                    event.Esd.toString().slice(0, 8) +
-                                      "T" +
-                                      event.Esd.toString().slice(8, 15)
-                                  ).format("HH:mm")}
-                                </span>
-                              ) : event.Eps === "HT" ? (
+                              {event.Eps === "HT" ? (
                                 <div className="items-center flex ">
                                   <span className=" mr-2  w-2 h-2"></span>
                                   <span className="text-red-500 ">

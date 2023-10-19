@@ -16,11 +16,11 @@ function Navbar() {
 
   return (
     <nav className="bg-slate-900 py-4">
-      <div className="flex justify-between text-white text-xl font-bold items-center mx-[2%] md:w-[80%] md:mx-auto">
-        <a href="/" className="text-xl  md:text-3xl font-bold">
+      <div className="flex justify-between text-white font-bold items-center mx-[2%] md:w-[80%] md:mx-auto">
+        <a href="/" className="text-2xl  md:text-3xl font-bold">
           <div className="flex justify-center items-center ">
             {" "}
-            L<span className="italic mx-1 text-red-500">i</span>ve{" "}
+            L<span className="italic text-red-500">i</span>ve{" "}
             <span className="ml-1">
               <FaFutbol className="" />
             </span>
