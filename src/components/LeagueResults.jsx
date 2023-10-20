@@ -11,14 +11,14 @@ const LeagueResults = ({ competitionCountry, competitionLeague }) => {
 
   if (matches && matches.length > 0 && matches[0].Events) {
     matches[0].Events.sort((a, b) => b.Esd - a.Esd); // or b.Esd - a.Esd for descending order
-    console.log(matches[0].Events);
+  
   } else {
-    console.log("No valid data to sort.");
+    console.error("No valid data to sort.");
   }
 
   useEffect(() => {
     const fetchData = async () => {
-      const cachedMatchesData = localStorage.getItem("matchesbyleagues");
+      const cachedMatchesData = localStorage.getItem("matchesbyleague");
       if (cachedMatchesData) {
         const leagueData = JSON.parse(cachedMatchesData);
         console.log(leagueData);

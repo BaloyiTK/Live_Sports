@@ -21,9 +21,8 @@ const MainContent = ({ onDateChange }) => {
     competitionName !== "" ? "fixture" : "all"
   );
 
-  console.log(allMatches);
+  console.log(competitionName)
 
-  console.log(selectedTab);
 
   // Your string containing "Ccd" and "Scd"
   const inputString = competitionName;
@@ -45,15 +44,8 @@ const MainContent = ({ onDateChange }) => {
       }
     }
 
-    // Check if both values have been found
-    if (ccdValue && scdValue) {
-      console.log("Ccd:", capitalizeFirstLetter(ccdValue)); // Output: England
-      console.log("Scd:", capitalizeFirstLetter(scdValue)); // Output: Premier-league
-    } else {
-      console.log("Values not found in the string.");
-    }
   } else {
-    console.log("Input string is not defined or empty.");
+    console.error("Input string is not defined or empty.");
   }
 
   const tabs = competitionName
@@ -95,7 +87,7 @@ const MainContent = ({ onDateChange }) => {
 
         switch (selectedTab) {
           case "all":
-            const cachedAllData = localStorage.getItem("allMatchess");
+            const cachedAllData = localStorage.getItem("allMatches");
             if (cachedAllData) {
               const { Stages } = JSON.parse(cachedAllData);
               setAllMatches(Stages);
@@ -146,10 +138,10 @@ const MainContent = ({ onDateChange }) => {
   };
 
   return (
-    <div className="p-2 md:p-4  bg-gray-900 text-white md:mx-1 md:rounded-lg">
+    <div className="p-2 md:p-4 bg-gray-900 text-white md:mx-1 md:rounded-lg">
       <div className=" bg-gray-700 p-2 text-sm font-semibold">
         {competitionName && (
-          <div className="flex items-center p-">
+          <div className="flex items-center">
             <img
               className="w-[25px] h-[15px] rounded-sm m-2"
               src={`https://static.livescore.com/i2/fh/${ccdValue}.jpg`}
@@ -168,7 +160,7 @@ const MainContent = ({ onDateChange }) => {
         <div className="w-full flex items-center">
           {tabs.map((tab) => (
             <span
-              className="m-1  hover:text-white"
+              className="m-1 hover:text-white"
               key={tab.id}
             >
               <Tabs

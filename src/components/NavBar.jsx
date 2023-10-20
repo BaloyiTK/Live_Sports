@@ -8,7 +8,6 @@ function Navbar() {
   const isMenuOpen = useSelector((state) => state.menu.isMenuOpen);
   const dispatch = useDispatch();
 
-  console.log(isMenuOpen);
 
   const toggleMobileMenu = () => {
     dispatch(menuActions.toggleMenu());

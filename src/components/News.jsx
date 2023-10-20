@@ -11,7 +11,7 @@ const News = ({ news }) => {
         news.map((news, i) => {
           if (news.categoryLabel === "Football") {
             return (
-              <>
+              <div key={i}>
                 <a
                   href={`https://www.livescore.com/${news.url}`}
                   target="_blank"
@@ -33,7 +33,7 @@ const News = ({ news }) => {
                     </div>
                   </div>
                 </a>
-              </>
+              </div>
             );
           }
         })}

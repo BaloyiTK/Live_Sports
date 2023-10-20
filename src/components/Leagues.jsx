@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useMemo, useCallback } from "react";
 import { useDispatch } from "react-redux";
 import { competitionNameActions } from "../store";
 import LeagueList from "./LeagueList";
@@ -7,51 +7,43 @@ import SearchBar from "./SearchBar";
 
 const Leagues = ({ leagues }) => {
   const [searchTerm, setSearchTerm] = useState("");
-  const [selectedLeague, setSelectedLeague] = useState("");
-  const [countryFlag, setCountryFlag] = useState("");
-  const [queriedLeague, setQueriedLeague] = useState("");
-  const [competitionStringId, setCompetitionStringId] = useState("");
-  const [ccd, setCcd] = useState("");
+  const [selectedLeagueData, setSelectedLeagueData] = useState({
+    name: "",
+    countryFlag: "",
+    ccd: "",
+  });
   const dispatch = useDispatch();
 
-  console.log(leagues)
-
-  const handleClear = () => {
+  const handleClear = useCallback(() => {
     setSearchTerm("");
-  };
+  }, []);
 
-  const handleBack = () => {
+  const handleBack = useCallback(() => {
     setSearchTerm("");
-    setSelectedLeague();
-    //setSearchTerm(queriedLeague); // Update the search term to the selected competition
-   //  setQueriedLeague("");
+    setSelectedLeagueData({ name: "", countryFlag: "", ccd: "" });
     dispatch(competitionNameActions.setCompetitionName(""));
-  };
+  }, [dispatch]);
 
-  const handleLeagueClick = (league, index) => {
-    setSearchTerm(league.Cnm); // Update the search term to the selected league
-    setCountryFlag(league.Ccd);
-    setSelectedLeague(league.Stages);
-    setCcd(league.Ccd);
-  };
+  const handleLeagueClick = useCallback((league) => {
+    setSearchTerm(league.Cnm);
+    setSelectedLeagueData({
+      name: league.Stages,
+      countryFlag: league.Ccd,
+      ccd: league.Ccd,
+    });
+  }, []);
 
-  dispatch(competitionNameActions.setCompetitionName(competitionStringId));
+  const handleCompetitionClick = useCallback((competition) => {
+    const competitionStringId = `Ccd=${selectedLeagueData.ccd.toLowerCase()}&Scd=${competition.Scd}`;
+    setSearchTerm(competition.CompN);
+    dispatch(competitionNameActions.setCompetitionName(competitionStringId));
+  }, [dispatch, selectedLeagueData]);
 
-  console.log(competitionStringId);
-
-  const handleCompetitionClick = (competition) => {
-    console.log(competition);
-    const ccdStr = (
-      competition.CompST ||
-      competition.CompN ||
-      ""
-    ).toLowerCase();
-    setCompetitionStringId(`Ccd=${ccd.toLowerCase()}&Scd=${competition.Scd}`);
-    setSearchTerm(competition.CompN); // Set search term to the selected competition
-  };
+  const selectedLeague = selectedLeagueData.name;
+  const countryFlag = selectedLeagueData.countryFlag;
 
   return (
-    <div className=" min-h-screen mx-auto p-4 bg-gray-900 rounded-md shadow-2xl text-white text-sm">
+    <div className="min-h-screen mx-auto p-4 bg-gray-900 rounded-md shadow-2xl text-white text-sm">
       <h3 className="font-bold pb-2">Leagues</h3>
 
       <SearchBar

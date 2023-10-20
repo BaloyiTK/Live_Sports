@@ -22,12 +22,10 @@ function App() {
   
 
   useEffect(() => {
-    setLeagues({})
+   
     if (isCompetition && isMenuOpen) {
       dispatch(menuActions.closeMenu());
-      dispatch(competitionNameActions.setCompetitionName(""));
-   
-   
+
     }
   }, [isCompetition]);
 
@@ -38,7 +36,7 @@ function App() {
 
   useEffect(() => {
     const fetchData = async () => {
-      const cachedLeagueData = localStorage.getItem("leagues");
+      const cachedLeagueData = localStorage.getItem("leaguess");
       if (cachedLeagueData) {
         const matchesData = JSON.parse(cachedLeagueData);
 
@@ -71,9 +69,7 @@ function App() {
       </header>
       <main className="container w-full md:w-[80%] mx-auto">
         <div className="flex md:mt-5">
-          {/* <div className={`w-[20%] hidden md:block`}>
-            <Leagues leagues={leagues} />
-          </div> */}
+        
           <div
             className={`md:w-[20%] md:block ${
                isMenuOpen
@@ -83,18 +79,6 @@ function App() {
           >
             <Leagues leagues={leagues} />
           </div>
-
-          {/* <div
-            className={`md:w-[20%] md:block ${
-              isCompetition
-                ? "hidden"
-                : isMenuOpen
-                ? "block absolute z-50 w-full"
-                : "hidden"
-            }`}
-          >
-            <Leagues leagues={leagues} />
-          </div> */}
 
           <div className="w-full md:w-[50%]">
             <MainContent onDateChange={handleDateChange} />

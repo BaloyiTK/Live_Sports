@@ -7,21 +7,13 @@ const [matches, setMatches] = useState();
   const [table, setTable] = useState();
   const imageUrl = "https://lsm-static-prod.livescore.com/medium/";
 
-  // console.log(matches && matches.length > 0 && matches[0].Events)
-
-  // if (matches && matches.length > 0 && matches[0].Events) {
-  //   matches[0].Events.sort((a, b) => a.Esd - b.Esd); // or b.Esd - a.Esd for descending order
-  //   console.log(matches[0].Events);
-  // } else {
-  //   console.log("No valid data to sort.");
-  // }
 
   useEffect(() => {
     const fetchData = async () => {
-      const cachedMatchesData = localStorage.getItem("matchesbyleagues");
+      const cachedMatchesData = localStorage.getItem("matchesbyleague");
       if (cachedMatchesData) {
         const leagueData = JSON.parse(cachedMatchesData);
-        console.log(leagueData);
+      
         setMatches(leagueData.Stages);
         setTable(leagueData.Stages);
       } else {
@@ -31,7 +23,7 @@ const [matches, setMatches] = useState();
         );
         setMatches(leagueData.Stages);
         setTable(leagueData.Stages);
-        console.log(leagueData);
+       
         localStorage.setItem("matchesbyleague", JSON.stringify(leagueData));
       }
     };

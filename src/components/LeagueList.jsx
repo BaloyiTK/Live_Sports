@@ -1,23 +1,22 @@
 import React from "react";
 
 const LeagueList = ({ leagues, searchTerm, handleLeagueClick }) => {
+  if (!Array.isArray(leagues)) {
+    console.error("leagues is not an array:", leagues);
+    return null; // or handle this situation appropriately
+  }
 
-  //console.log('Type of leagues:', typeof leagues);
-
-  console.log(leagues)
-
-  const filteredLeagues =
-    leagues &&
-    leagues.filter((league) =>
-      league.Cnm.toLowerCase().includes(searchTerm.toLowerCase())
-    );
-
-  console.log(leagues)
+  const filteredLeagues = leagues.filter((league) =>
+    league.Cnm.toLowerCase().includes(searchTerm.toLowerCase())
+  );
 
   return (
     <ul className="mt-2">
-      {filteredLeagues &&
-        filteredLeagues.map((league, index) => (
+      {filteredLeagues.map((league, index) => {
+        const truncatedName = league.Cnm.length > 22 ? `${league.Cnm.substring(0, 22)}...` : league.Cnm;
+        const imageUrl = `https://static.livescore.com/i2/fh/${league.Ccd}.jpg`;
+
+        return (
           <div
             key={index}
             className="flex items-center cursor-pointer h-fit mb-2 "
@@ -26,17 +25,16 @@ const LeagueList = ({ leagues, searchTerm, handleLeagueClick }) => {
             <div className="w-[10%]">
               <img
                 className="w-[20px] h-[10px] rounded-sm"
-                src={`https://static.livescore.com/i2/fh/${league.Ccd}.jpg`}
+                src={imageUrl}
                 alt={league.Cnm}
               />
             </div>
             <li className="list-none w-[90%] ml-2 overflow-hidden whitespace-nowrap">
-              {league.Cnm.length > 22
-                ? `${league.Cnm.substring(0, 22)}...`
-                : league.Cnm}
+              {truncatedName}
             </li>
           </div>
-        ))}
+        );
+      })}
     </ul>
   );
 };
