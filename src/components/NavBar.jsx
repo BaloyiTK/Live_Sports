@@ -2,6 +2,9 @@ import React, { useState } from "react";
 import { FaBars, FaTimes, FaFutbol } from "react-icons/fa"; // Import the close icon
 import { useSelector, useDispatch } from "react-redux";
 import { menuActions } from "../store";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faFutbol } from '@fortawesome/free-solid-svg-icons';
+import { IoMdFootball } from 'react-icons/io';
 
 function Navbar() {
   //const [isMenuOpen, setIsMenuOpen] = useState(false)
@@ -14,35 +17,37 @@ function Navbar() {
   };
 
   return (
-    <nav className="bg-slate-900 py-4">
-      <div className="flex justify-between text-white font-bold items-center mx-[2%] md:w-[80%] md:mx-auto">
+    <nav className=" bg-white py-4">
+      <div className="flex justify-between text-black font-bold items-center mx-[2%] md:w-[80%] md:mx-auto">
         <a href="/" className="text-2xl  md:text-3xl font-bold">
           <div className="flex justify-center items-center ">
             {" "}
             L<span className="italic text-red-500">i</span>ve{" "}
             <span className="ml-1">
-              <FaFutbol className="" />
+              {/* <FaFutbol className="" /> 
+              <FontAwesomeIcon icon={faFutbol} />*/}
+              <IoMdFootball className="text-4xl" /> 
             </span>
           </div>
         </a>
 
         {/* Conditional rendering of menu icon based on isMobile */}
 
-        <div className="md:hidden border border-white rounded flex items-center p-1">
+        <div className="md:hidden border border-slate-900 rounded flex items-center p-1">
           {" "}
           {isMenuOpen ? (
             <button
               className="mobile-menu-button md:hidden z-50 text-lg"
               onClick={toggleMobileMenu}
             >
-              <FaTimes className="text-lg" /> {/* Close icon */}
+              <FaTimes className="text-xl" /> {/* Close icon */}
             </button>
           ) : (
             <button
               className="mobile-menu-button md:hidden z-40"
               onClick={toggleMobileMenu}
             >
-              <FaBars className="text-lg" /> {/* Hamburger icon */}
+              <FaBars className="text-xl" /> {/* Hamburger icon */}
             </button>
           )}
         </div>
