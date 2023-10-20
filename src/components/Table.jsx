@@ -49,9 +49,7 @@ const Table = () => {
 
   return (
     <div className="border border-gray-500 rounded-t-lg min-h-screen">
-      {loading ? ( // Show loading state
-        <div>Loading...</div>
-      ) : (
+      {loading ? <div className="h-screen flex justify-center items-center text-black">loading</div> :  (
         <div className="overflow-x-auto rounded-t-lg">
           <table className="min-w-full table-fixed border-b rounded-y-lg">
             <thead className="text-white bg-slate-600">

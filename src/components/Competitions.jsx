@@ -1,6 +1,10 @@
 import React from "react";
 
-const Competitions = ({ selectedLeague, handleCompetitionClick, countryFlag }) => {
+const Competitions = ({
+  selectedLeague,
+  handleCompetitionClick,
+  countryFlag,
+}) => {
   if (!selectedLeague || !Array.isArray(selectedLeague)) {
     console.error("selectedLeague is not a valid array:", selectedLeague);
     return null; // Handle this situation appropriately

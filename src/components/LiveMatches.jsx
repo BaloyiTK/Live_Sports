@@ -1,12 +1,12 @@
 import React from "react";
 import moment from "moment";
 
-const LiveMatches = ({ liveMatches }) => {
+const LiveMatches = ({ liveMatches, loading }) => {
   const imageUrl = "https://lsm-static-prod.livescore.com/medium/";
 
   return (
     <div className="bg-gray-200 w-[100%] rounded-lg md:p-4 shadow-2xl min-h-screen text-sm ">
-      {liveMatches && liveMatches.length === 0 ? (
+      {loading ? <div className="h-screen flex justify-center items-center text-black">loading</div> : liveMatches && liveMatches.length === 0 ? (
         <div className="h-screen
         flex justify-center items-center text-black">No match is being played at the momemt.</div>
       ) : (

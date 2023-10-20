@@ -6,6 +6,7 @@ const LeagueResults = ({ competitionCountry, competitionLeague }) => {
   const [matches, setMatches] = useState();
   const [table, setTable] = useState();
   const imageUrl = "https://lsm-static-prod.livescore.com/medium/";
+  const [loading, setLoading] = useState(false)
 
   // console.log(matches && matches.length > 0 && matches[0].Events)
 
@@ -18,12 +19,14 @@ const LeagueResults = ({ competitionCountry, competitionLeague }) => {
 
   useEffect(() => {
     const fetchData = async () => {
-      const cachedMatchesData = localStorage.getItem("matchesbyleagues");
+      setLoading(true)
+      const cachedMatchesData = localStorage.getItem("matchesbyleague");
       if (cachedMatchesData) {
         const leagueData = JSON.parse(cachedMatchesData);
         console.log(leagueData);
         setMatches(leagueData.Stages);
         setTable(leagueData.Stages);
+        setLoading(false)
       } else {
         const leagueData = await fetchMatchesByLeague(
           competitionCountry,
@@ -33,6 +36,7 @@ const LeagueResults = ({ competitionCountry, competitionLeague }) => {
         setTable(leagueData.Stages);
         console.log(leagueData);
         localStorage.setItem("matchesbyleague", JSON.stringify(leagueData));
+        setLoading(false)
       }
     };
 
@@ -41,7 +45,7 @@ const LeagueResults = ({ competitionCountry, competitionLeague }) => {
 
   return (
     <div className="bg-gray-200 w-[100%] rounded-lg p-4 shadow-2xl min-h-screen text-sm ">
-      {matches &&
+      {loading ? <div className="h-screen flex justify-center items-center text-black">loading</div> :  matches &&
         matches.map((match, index) => {
           return (
             <div className="w-[100%]" key={index}>

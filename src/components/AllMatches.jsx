@@ -1,26 +1,31 @@
 import React from "react";
 import moment from "moment";
 
-const AllMatches = ({ allMatches }) => {
+const AllMatches = ({ allMatches, loading }) => {
   const imageUrl = "https://lsm-static-prod.livescore.com/medium/";
+
+  console.log(loading);
 
   return (
     <div className="bg-gray-200 w-[100%] rounded-lg md:p-4 shadow-2xl min-h-screen text-sm ">
-      {
-      
-      allMatches &&
+      {loading ? (
+        <div className="h-screen flex justify-center items-center text-black">
+          loading
+        </div>
+      ) : (
+        allMatches &&
         allMatches.map((match, index) => {
           return (
             <div className="w-[100%]" key={index}>
               <div className="m-3 flex items-center">
-              <img
-  className="w-[30px] h-[15px] rounded-sm pr-2 shadow-2xl mt-2"
-  src={`https://static.livescore.com/i2/fh/${match.Ccd}.jpg`}
-  alt=""
-  onError={(e) => {
-    e.target.src = "/placeholder.png"; // Replace with the actual path to your placeholder image
-  }}
-/>
+                <img
+                  className="w-[30px] h-[15px] rounded-sm pr-2 shadow-2xl mt-2"
+                  src={`https://static.livescore.com/i2/fh/${match.Ccd}.jpg`}
+                  alt=""
+                  onError={(e) => {
+                    e.target.src = "/placeholder.png"; // Replace with the actual path to your placeholder image
+                  }}
+                />
 
                 <div className="grid mt-2">
                   <span className="font-bold text-gray-800">{match.Cnm}</span>
@@ -38,19 +43,17 @@ const AllMatches = ({ allMatches }) => {
                           key={index}
                         >
                           <div className="flex justify-center w-[30%]">
-                          
-                              {event.Eps === "NS" ? (
-                                <span>
-                                  {moment(
-                                    event.Esd.toString().slice(0, 8) +
-                                      "T" +
-                                      event.Esd.toString().slice(8, 15)
-                                  ).format("HH:mm")}
-                                </span>
-                              ) : (
-                                <span>{event.Eps}</span>
-                              )}
-                           
+                            {event.Eps === "NS" ? (
+                              <span>
+                                {moment(
+                                  event.Esd.toString().slice(0, 8) +
+                                    "T" +
+                                    event.Esd.toString().slice(8, 15)
+                                ).format("HH:mm")}
+                              </span>
+                            ) : (
+                              <span>{event.Eps}</span>
+                            )}
                           </div>
 
                           <div className="grid w-[100%] overflow-x-hidden ">
@@ -101,7 +104,8 @@ const AllMatches = ({ allMatches }) => {
               </div>
             </div>
           );
-        })}
+        })
+      )}
     </div>
   );
 };

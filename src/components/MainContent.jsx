@@ -13,6 +13,7 @@ import LeagueResults from "./LeagueResults";
 
 const MainContent = ({ onDateChange }) => {
   const [selectedDate, setSelectedDate] = useState(new Date());
+  const [loading, setLoading] = useState(false)
   const [allMatches, setAllMatches] = useState();
   const [liveMatches, setLiveMatches] = useState();
   const [matchesResults, setMatchesResults] = useState();
@@ -87,37 +88,46 @@ const MainContent = ({ onDateChange }) => {
 
         switch (selectedTab) {
           case "all":
+            setLoading(true)
             const cachedAllData = localStorage.getItem("allMatches");
             if (cachedAllData) {
               const { Stages } = JSON.parse(cachedAllData);
               setAllMatches(Stages);
+              setLoading(false)
             } else {
               matchesData = await fetchAllMatchesByDate(selectedDate);
               setAllMatches(matchesData.Stages);
               localStorage.setItem("allMatches", JSON.stringify(matchesData));
+              setLoading(false)
             }
             break;
 
           case "live":
+            setLoading(true)
             const cachedLiveData = localStorage.getItem("liveMatchess");
             if (cachedLiveData) {
               setLiveMatches(JSON.parse(cachedLiveData));
+              setLoading(false)
             } else {
               matchesData = await fetchLiveMatches();
               setLiveMatches(matchesData);
               localStorage.setItem("liveMatches", JSON.stringify(matchesData));
+              setLoading(false)
             }
             break;
 
           case "results":
-            const cachedResultsData = localStorage.getItem("allMatchess");
+            setLoading(true)
+            const cachedResultsData = localStorage.getItem("allMatches");
             if (cachedResultsData) {
               const { Stages } = JSON.parse(cachedResultsData);
               setMatchesResults(Stages);
+              setLoading(false)
             } else {
               matchesData = await fetchAllMatchesByDate(selectedDate);
               setMatchesResults(matchesData.Stages);
               localStorage.setItem("allMatches", JSON.stringify(matchesData));
+              setLoading(false)
             }
             break;
 
@@ -204,13 +214,13 @@ const MainContent = ({ onDateChange }) => {
                 return (
                   <div key={tab.id}>
                     {selectedTab === "all" && (
-                      <AllMatches allMatches={allMatches} />
+                      <AllMatches allMatches={allMatches} loading ={loading} />
                     )}
                     {selectedTab === "live" && (
-                      <LiveMatches liveMatches={liveMatches} />
+                      <LiveMatches liveMatches={liveMatches} loading ={loading} />
                     )}
                     {selectedTab === "results" && (
-                      <Results results={matchesResults} />
+                      <Results results={matchesResults} loading ={loading} />
                     )}
                   </div>
                 );

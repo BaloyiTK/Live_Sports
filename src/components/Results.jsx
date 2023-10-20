@@ -1,11 +1,16 @@
 import React from "react";
 
-const Results = ({ results }) => {
+const Results = ({ results, loading }) => {
   const imageUrl = "https://lsm-static-prod.livescore.com/medium/";
 
   return (
     <div className="bg-gray-200 w-[100%] rounded-lg md:p-4 shadow-2xl min-h-screen text-sm ">
-      {results &&
+      {loading ? (
+        <div className="h-screen flex justify-center items-center text-black">
+          loading
+        </div>
+      ) : (
+        results &&
         results.map((match, index) => {
           const relevantEvents = match.Events.filter(
             (event) =>
@@ -46,9 +51,7 @@ const Results = ({ results }) => {
                             event.Eps === "AAW" ||
                             event.Eps === "Aband." ? (
                               <span>{event.Eps}</span>
-                            ) : (
-                              null
-                            )}
+                            ) : null}
                           </div>
 
                           <div className="grid w-[100%] overflow-x-hidden ">
@@ -99,7 +102,8 @@ const Results = ({ results }) => {
               </div>
             </div>
           );
-        })}
+        })
+      )}
     </div>
   );
 };
