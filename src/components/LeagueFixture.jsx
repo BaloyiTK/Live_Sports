@@ -1,24 +1,24 @@
 import React, { useState, useEffect } from "react";
 import moment from "moment";
 import { fetchMatchesByLeague } from "../api";
+import BallBouncingLoader from "./BallBouncingLoader";
 
 const LeagueFixture = ({ competitionCountry, competitionLeague }) => {
-const [matches, setMatches] = useState();
+  const [matches, setMatches] = useState();
   const [table, setTable] = useState();
   const imageUrl = "https://lsm-static-prod.livescore.com/medium/";
-  const [loading, setLoading] = useState(false)
-
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     const fetchData = async () => {
-      setLoading(true)
+      setLoading(true);
       const cachedMatchesData = localStorage.getItem("matchesbyleague");
       if (cachedMatchesData) {
         const leagueData = JSON.parse(cachedMatchesData);
-      
+
         setMatches(leagueData.Stages);
         setTable(leagueData.Stages);
-        setLoading(false)
+        setLoading(false);
       } else {
         const leagueData = await fetchMatchesByLeague(
           competitionCountry,
@@ -26,9 +26,9 @@ const [matches, setMatches] = useState();
         );
         setMatches(leagueData.Stages);
         setTable(leagueData.Stages);
-       
+
         localStorage.setItem("matchesbyleague", JSON.stringify(leagueData));
-        setLoading(false)
+        setLoading(false);
       }
     };
 
@@ -37,7 +37,12 @@ const [matches, setMatches] = useState();
 
   return (
     <div className="bg-gray-200 w-[100%] rounded-lg p-4 shadow-2xl min-h-screen text-sm ">
-      {loading ? <div className="h-screen flex justify-center items-center text-black">loading</div> :  matches &&
+      {loading ? (
+        <div className="h-screen flex justify-center items-center text-black">
+            <BallBouncingLoader/>
+        </div>
+      ) : (
+        matches &&
         matches.map((match, index) => {
           return (
             <div className="w-[100%]" key={index}>
@@ -47,12 +52,10 @@ const [matches, setMatches] = useState();
 
               <div className="m-3">
                 <div className="grid">
-                {match.Events
-                    .filter((event) => event.Eps === "NS")
-                    .map((event, index) => {
+                  {match.Events.filter((event) => event.Eps === "NS").map(
+                    (event, index) => {
                       return (
                         <div key={index}>
-
                           {/* <span className="text-black m-1">{`Round ${event.Pid + 1}`}</span> */}
                           <span className="text-gray-600 text-xs font-semibold">
                             {moment(
@@ -103,17 +106,17 @@ const [matches, setMatches] = useState();
                                 </span>
                               </div>
                             </div>
-                         
                           </div>
                         </div>
                       );
-                    })}
-
+                    }
+                  )}
                 </div>
               </div>
             </div>
           );
-        })}
+        })
+      )}
     </div>
   );
 };

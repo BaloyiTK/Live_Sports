@@ -1,4 +1,5 @@
 import React from "react";
+import BallBouncingLoader from "./BallBouncingLoader";
 
 const Results = ({ results, loading }) => {
   const imageUrl = "https://lsm-static-prod.livescore.com/medium/";
@@ -7,7 +8,7 @@ const Results = ({ results, loading }) => {
     <div className="bg-gray-200 w-[100%] rounded-lg md:p-4 shadow-2xl min-h-screen text-sm ">
       {loading ? (
         <div className="h-screen flex justify-center items-center text-black">
-          loading
+             <BallBouncingLoader/>
         </div>
       ) : (
         results &&

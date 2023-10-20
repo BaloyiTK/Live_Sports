@@ -1,14 +1,23 @@
 import React from "react";
 import moment from "moment";
+import BallBouncingLoader from "./BallBouncingLoader";
 
 const LiveMatches = ({ liveMatches, loading }) => {
   const imageUrl = "https://lsm-static-prod.livescore.com/medium/";
 
   return (
     <div className="bg-gray-200 w-[100%] rounded-lg md:p-4 shadow-2xl min-h-screen text-sm ">
-      {loading ? <div className="h-screen flex justify-center items-center text-black">loading</div> : liveMatches && liveMatches.length === 0 ? (
-        <div className="h-screen
-        flex justify-center items-center text-black">No match is being played at the momemt.</div>
+      {loading ? (
+        <div className="h-screen flex justify-center items-center text-black">
+            <BallBouncingLoader/>
+        </div>
+      ) : liveMatches && liveMatches.length === 0 ? (
+        <div
+          className="h-screen
+        flex justify-center items-center text-black"
+        >
+          No match is being played at the momemt.
+        </div>
       ) : (
         liveMatches &&
         liveMatches.map((match, index) => {
@@ -35,27 +44,25 @@ const LiveMatches = ({ liveMatches, loading }) => {
                           className="mb-2 flex items-center bg-slate-900 w-[100%] rounded-lg text-gray-300 hover:bg-slate-500"
                           key={index}
                         >
-                        
-                            <div className="flex justify-center w-[30%]">
-                              {event.Eps === "HT" ? (
-                                <div className="items-center flex ">
-                                  <span className=" mr-2  w-2 h-2"></span>
-                                  <span className="text-red-500 ">
-                                    {event.Eps}
-                                  </span>
-                                </div>
-                              ) : (
-                                <div className="items-center flex ">
-                                  <span className="text-green-500 animate-ping opacity-100 rounded-full mr-2 bg-green-500 w-2 h-2"></span>
-                                  <span className="text-green-500 ">
-                                    {event.Eps}
-                                  </span>
-                                </div>
-                              )}
-                            </div>
-                       
+                          <div className="flex justify-center w-[30%]">
+                            {event.Eps === "HT" ? (
+                              <div className="items-center flex ">
+                                <span className=" mr-2  w-2 h-2"></span>
+                                <span className="text-red-500 ">
+                                  {event.Eps}
+                                </span>
+                              </div>
+                            ) : (
+                              <div className="items-center flex ">
+                                <span className="text-green-500 animate-ping opacity-100 rounded-full mr-2 bg-green-500 w-2 h-2"></span>
+                                <span className="text-green-500 ">
+                                  {event.Eps}
+                                </span>
+                              </div>
+                            )}
+                          </div>
 
-                            <div className="grid w-[100%] overflow-x-hidden ">
+                          <div className="grid w-[100%] overflow-x-hidden ">
                             <div className="flex items-center mb-2">
                               <img
                                 className="w-[20px] h-[20px] mr-2 "

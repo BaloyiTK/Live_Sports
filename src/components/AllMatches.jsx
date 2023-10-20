@@ -1,5 +1,6 @@
 import React from "react";
 import moment from "moment";
+import BallBouncingLoader from "./BallBouncingLoader";
 
 const AllMatches = ({ allMatches, loading }) => {
   const imageUrl = "https://lsm-static-prod.livescore.com/medium/";
@@ -10,7 +11,7 @@ const AllMatches = ({ allMatches, loading }) => {
     <div className="bg-gray-200 w-[100%] rounded-lg md:p-4 shadow-2xl min-h-screen text-sm ">
       {loading ? (
         <div className="h-screen flex justify-center items-center text-black">
-          loading
+          <BallBouncingLoader/>
         </div>
       ) : (
         allMatches &&

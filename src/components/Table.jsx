@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { fetchLeagueTable } from "../api";
+import BallBouncingLoader from "./BallBouncingLoader";
 
 const Table = () => {
   const competitionName = useSelector((state) => state.competitionName.name);
@@ -49,7 +50,11 @@ const Table = () => {
 
   return (
     <div className="border border-gray-500 rounded-t-lg min-h-screen">
-      {loading ? <div className="h-screen flex justify-center items-center text-black">loading</div> :  (
+      {loading ? (
+        <div className="h-screen flex justify-center items-center text-black">
+             <BallBouncingLoader/>
+        </div>
+      ) : (
         <div className="overflow-x-auto rounded-t-lg">
           <table className="min-w-full table-fixed border-b rounded-y-lg">
             <thead className="text-white bg-slate-600">
