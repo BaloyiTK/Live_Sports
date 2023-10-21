@@ -12,7 +12,7 @@ const LeagueFixture = ({ competitionCountry, competitionLeague }) => {
   useEffect(() => {
     const fetchData = async () => {
       setLoading(true);
-      const cachedMatchesData = localStorage.getItem("matchesbyleague");
+      const cachedMatchesData = localStorage.getItem("matchesbyleagues");
       if (cachedMatchesData) {
         const leagueData = JSON.parse(cachedMatchesData);
 
