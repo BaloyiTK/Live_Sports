@@ -9,6 +9,8 @@ const LeagueFixture = ({ competitionCountry, competitionLeague }) => {
   const imageUrl = "https://lsm-static-prod.livescore.com/medium/";
   const [loading, setLoading] = useState(false);
 
+
+
   useEffect(() => {
     const fetchData = async () => {
       setLoading(true);
@@ -33,7 +35,7 @@ const LeagueFixture = ({ competitionCountry, competitionLeague }) => {
     };
 
     fetchData();
-  }, []);
+  }, [competitionLeague]);
 
   return (
     <div className="bg-gray-200 w-[100%] rounded-lg md:p-4 shadow-2xl min-h-screen text-sm ">

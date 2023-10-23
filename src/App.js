@@ -20,7 +20,6 @@ function App() {
   const isMenuOpen = useSelector((state) => state.menu.isMenuOpen);
   const isCompetition = useSelector((state) => state.competitionName.name);
 
-  console.log(leagues);
 
   useEffect(() => {
     if (isCompetition && isMenuOpen) {

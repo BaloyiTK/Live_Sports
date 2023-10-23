@@ -4,7 +4,6 @@ import MatchCard from "./MatchCard"; // Import the MatchCard component
 
 const Results = ({ results, loading }) => {
 
-  console.log(results)
   const imageUrl = "https://lsm-static-prod.livescore.com/medium/";
 
   return (

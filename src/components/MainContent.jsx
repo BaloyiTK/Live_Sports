@@ -50,6 +50,9 @@ const MainContent = ({ onDateChange }) => {
     if (competitionName) {
   
       dispatch(selectedTabActions.setSelectedTab("fixture"));
+    }else{
+      dispatch(selectedTabActions.setSelectedTab("all"));
+
     }
   }, [competitionName]);
 

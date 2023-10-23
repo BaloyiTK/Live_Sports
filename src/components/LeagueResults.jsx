@@ -9,7 +9,7 @@ const LeagueResults = ({ competitionCountry, competitionLeague }) => {
   const imageUrl = "https://lsm-static-prod.livescore.com/medium/";
   const [loading, setLoading] = useState(false);
 
-  // console.log(matches && matches.length > 0 && matches[0].Events)
+ 
 
   if (matches && matches.length > 0 && matches[0].Events) {
     matches[0].Events.sort((a, b) => b.Esd - a.Esd); // or b.Esd - a.Esd for descending order
@@ -23,7 +23,7 @@ const LeagueResults = ({ competitionCountry, competitionLeague }) => {
       const cachedMatchesData = localStorage.getItem("matchesbyleagues");
       if (cachedMatchesData) {
         const leagueData = JSON.parse(cachedMatchesData);
-        console.log(leagueData);
+     
         setMatches(leagueData.Stages);
         setTable(leagueData.Stages);
         setLoading(false);
@@ -34,7 +34,7 @@ const LeagueResults = ({ competitionCountry, competitionLeague }) => {
         );
         setMatches(leagueData.Stages);
         setTable(leagueData.Stages);
-        console.log(leagueData);
+      
         localStorage.setItem("matchesbyleague", JSON.stringify(leagueData));
         setLoading(false);
       }

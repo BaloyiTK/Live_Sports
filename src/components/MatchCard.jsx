@@ -7,7 +7,7 @@ const imageUrl = "https://lsm-static-prod.livescore.com/medium/";
 const MatchCard = ({ match }) => {
   const selectedTab = useSelector((state) => state.selectedTab);
 
-  console.log(selectedTab);
+
 
   return (
     <div className="w-[100%]">
