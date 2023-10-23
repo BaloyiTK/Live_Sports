@@ -4,26 +4,54 @@ import AllMatches from "./AllMatches";
 import { fetchAllMatchesByDate, fetchLiveMatches } from "../api";
 import LiveMatches from "./LiveMatches";
 import Results from "./Results";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import Table from "./Table";
 import CustomDatePicker from "./DatePicker"; // Import the DatePicker component
-import Tabs from "./Tabs";
+
 import MatchesByLeague from "./LeagueFixture";
 import LeagueResults from "./LeagueResults";
+import { selectedTabActions } from "../store";
+
+const Tabs = ({ tab, selectedTab, onSelect, resetDate }) => {
+  const isActive = selectedTab === tab.id;
+
+  const buttonClasses = `p-1.5 rounded-lg transition-all duration-300 ease-in-out ${
+    isActive
+      ? "bg-red-500 text-white  hover:text-white"
+      : "bg-gray-200 text-gray-700"
+  }`;
+
+  return (
+    <button
+      onClick={() => {
+        onSelect(tab.id);
+        resetDate();
+      }}
+      className={buttonClasses}
+    >
+      {tab.label}
+    </button>
+  );
+};
+
+
 
 const MainContent = ({ onDateChange }) => {
   const [selectedDate, setSelectedDate] = useState(new Date());
-  const [loading, setLoading] = useState(false)
+  const [loading, setLoading] = useState(false);
   const [allMatches, setAllMatches] = useState();
   const [liveMatches, setLiveMatches] = useState();
   const [matchesResults, setMatchesResults] = useState();
   const competitionName = useSelector((state) => state.competitionName.name);
-  const [selectedTab, setSelectedTab] = useState(
-    competitionName !== "" ? "fixture" : "all"
-  );
+  const selectedTab = useSelector((state) => state.selectedTab);
+  const dispatch = useDispatch();
 
-  console.log(competitionName)
-
+  useEffect(() => {
+    if (competitionName) {
+  
+      dispatch(selectedTabActions.setSelectedTab("fixture"));
+    }
+  }, [competitionName]);
 
   // Your string containing "Ccd" and "Scd"
   const inputString = competitionName;
@@ -44,7 +72,6 @@ const MainContent = ({ onDateChange }) => {
         scdValue = value;
       }
     }
-
   } else {
     console.error("Input string is not defined or empty.");
   }
@@ -88,46 +115,46 @@ const MainContent = ({ onDateChange }) => {
 
         switch (selectedTab) {
           case "all":
-            setLoading(true)
-            const cachedAllData = localStorage.getItem("allMatches");
+            setLoading(true);
+            const cachedAllData = localStorage.getItem("allMatchess");
             if (cachedAllData) {
               const { Stages } = JSON.parse(cachedAllData);
               setAllMatches(Stages);
-              setLoading(false)
+              setLoading(false);
             } else {
               matchesData = await fetchAllMatchesByDate(selectedDate);
               setAllMatches(matchesData.Stages);
               localStorage.setItem("allMatches", JSON.stringify(matchesData));
-              setLoading(false)
+              setLoading(false);
             }
             break;
 
           case "live":
-            setLoading(true)
+            setLoading(true);
             const cachedLiveData = localStorage.getItem("liveMatchess");
             if (cachedLiveData) {
               setLiveMatches(JSON.parse(cachedLiveData));
-              setLoading(false)
+              setLoading(false);
             } else {
               matchesData = await fetchLiveMatches();
               setLiveMatches(matchesData);
               localStorage.setItem("liveMatches", JSON.stringify(matchesData));
-              setLoading(false)
+              setLoading(false);
             }
             break;
 
           case "results":
-            setLoading(true)
+            setLoading(true);
             const cachedResultsData = localStorage.getItem("allMatches");
             if (cachedResultsData) {
               const { Stages } = JSON.parse(cachedResultsData);
               setMatchesResults(Stages);
-              setLoading(false)
+              setLoading(false);
             } else {
               matchesData = await fetchAllMatchesByDate(selectedDate);
               setMatchesResults(matchesData.Stages);
               localStorage.setItem("allMatches", JSON.stringify(matchesData));
-              setLoading(false)
+              setLoading(false);
             }
             break;
 
@@ -169,14 +196,13 @@ const MainContent = ({ onDateChange }) => {
         )}
         <div className="w-full flex items-center">
           {tabs.map((tab) => (
-            <span
-              className="m-1 hover:text-white"
-              key={tab.id}
-            >
+            <span className="m-1 hover:text-white" key={tab.id}>
               <Tabs
                 tab={tab}
                 selectedTab={selectedTab}
-                onSelect={setSelectedTab}
+                onSelect={() =>
+                  dispatch(selectedTabActions.setSelectedTab(tab.id))
+                }
                 resetDate={resetDate}
               />
             </span>
@@ -204,9 +230,9 @@ const MainContent = ({ onDateChange }) => {
               />
             ) : (
               <LeagueResults
-              competitionCountry={ccdValue}
-              competitionLeague={scdValue}
-            />
+                competitionCountry={ccdValue}
+                competitionLeague={scdValue}
+              />
             )
           ) : (
             tabs.map((tab) => {
@@ -214,13 +240,16 @@ const MainContent = ({ onDateChange }) => {
                 return (
                   <div key={tab.id}>
                     {selectedTab === "all" && (
-                      <AllMatches allMatches={allMatches} loading ={loading} />
+                      <AllMatches allMatches={allMatches} loading={loading} />
                     )}
                     {selectedTab === "live" && (
-                      <LiveMatches liveMatches={liveMatches} loading ={loading} />
+                      <LiveMatches
+                        liveMatches={liveMatches}
+                        loading={loading}
+                      />
                     )}
                     {selectedTab === "results" && (
-                      <Results results={matchesResults} loading ={loading} />
+                      <Results results={matchesResults} loading={loading} />
                     )}
                   </div>
                 );

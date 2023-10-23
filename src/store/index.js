@@ -1,4 +1,4 @@
-import { configureStore, createSlice } from "@reduxjs/toolkit";
+import { createSlice, configureStore } from "@reduxjs/toolkit";
 
 // Define the competitionNameSlice
 const competitionNameSlice = createSlice({
@@ -28,13 +28,26 @@ const menuSlice = createSlice({
   },
 });
 
-// Export the actions for the competitionName and menu slices
+// Define the selectedTabSlice
+const selectedTabSlice = createSlice({
+  name: "selectedTab",
+  initialState: "all", // Set the initial state to "all" or your desired default tab
+  reducers: {
+    setSelectedTab(state, action) {
+      return action.payload;
+    },
+  },
+});
+
+// Export the actions for the competitionName, menu, and selectedTab slices
 export const competitionNameActions = competitionNameSlice.actions;
 export const menuActions = menuSlice.actions;
+export const selectedTabActions = selectedTabSlice.actions;
 
 export const store = configureStore({
   reducer: {
     competitionName: competitionNameSlice.reducer,
-    menu: menuSlice.reducer, // Include the menu slice in the Redux store
+    menu: menuSlice.reducer,
+    selectedTab: selectedTabSlice.reducer, // Include the selected tab slice in the Redux store
   },
 });

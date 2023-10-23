@@ -12,7 +12,7 @@ const LeagueFixture = ({ competitionCountry, competitionLeague }) => {
   useEffect(() => {
     const fetchData = async () => {
       setLoading(true);
-      const cachedMatchesData = localStorage.getItem("matchesbyleague");
+      const cachedMatchesData = localStorage.getItem("matchesbyleagues");
       if (cachedMatchesData) {
         const leagueData = JSON.parse(cachedMatchesData);
 
@@ -36,7 +36,7 @@ const LeagueFixture = ({ competitionCountry, competitionLeague }) => {
   }, []);
 
   return (
-    <div className="bg-gray-200 w-[100%] rounded-lg p-4 shadow-2xl min-h-screen text-sm ">
+    <div className="bg-gray-200 w-[100%] rounded-lg md:p-4 shadow-2xl min-h-screen text-sm ">
       {loading ? (
         <div className="h-screen flex justify-center items-center text-black">
             <BallBouncingLoader/>

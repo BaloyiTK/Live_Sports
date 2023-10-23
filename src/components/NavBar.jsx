@@ -17,7 +17,7 @@ function Navbar() {
   };
 
   return (
-    <nav className=" bg-white py-4">
+    <nav className=" bg-white md:bg-slate-200 py-4">
       <div className="flex justify-between text-black font-bold items-center mx-[2%] md:w-[80%] md:mx-auto">
         <a href="/" className="text-2xl  md:text-3xl font-bold">
           <div className="flex justify-center items-center ">

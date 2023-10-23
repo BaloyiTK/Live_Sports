@@ -20,7 +20,7 @@ const LeagueResults = ({ competitionCountry, competitionLeague }) => {
   useEffect(() => {
     const fetchData = async () => {
       setLoading(true);
-      const cachedMatchesData = localStorage.getItem("matchesbyleague");
+      const cachedMatchesData = localStorage.getItem("matchesbyleagues");
       if (cachedMatchesData) {
         const leagueData = JSON.parse(cachedMatchesData);
         console.log(leagueData);
@@ -44,7 +44,7 @@ const LeagueResults = ({ competitionCountry, competitionLeague }) => {
   }, [competitionLeague]);
 
   return (
-    <div className="bg-gray-200 w-[100%] rounded-lg p-4 shadow-2xl min-h-screen text-sm ">
+    <div className="bg-gray-200 w-[100%] rounded-lg md:p-4 shadow-2xl min-h-screen text-sm ">
       {loading ? (
         <div className="h-screen flex justify-center items-center text-black">
              <BallBouncingLoader/>
@@ -77,23 +77,14 @@ const LeagueResults = ({ competitionCountry, competitionLeague }) => {
                           className="mb-2 flex items-center bg-slate-900 w-[100%] rounded-lg text-gray-300 hover-bg-slate-500"
                           key={index}
                         >
-                          <div className="p-5 w-[] ">
-                            <div>
-                              {event.Eps === "NS" ? (
-                                <span>
-                                  {moment(
-                                    event.Esd.toString().slice(0, 8) +
-                                      "T" +
-                                      event.Esd.toString().slice(8, 15)
-                                  ).format("HH:mm")}
-                                </span>
-                              ) : (
+                           <div className="flex justify-center w-[30%]">
+                          
                                 <span>{event.Eps}</span>
-                              )}
-                            </div>
+                      
+                           
                           </div>
                           {/* Rest of your event rendering code */}
-                          <div className="grid w-[100%] ">
+                          <div className="grid w-[100%] overflow-x-hidden ">
                             <div className="flex items-center mb-2">
                               <img
                                 className="w-[20px] h-[20px] mr-2 "
@@ -115,7 +106,8 @@ const LeagueResults = ({ competitionCountry, competitionLeague }) => {
                               </span>
                             </div>
                           </div>
-                          <div className="w-[50%]  flex justify-end mr-10 ">
+                        
+                          <div className="w-[25%] md:w-[50%]  flex justify-end mr-5 md:mr-10 ">
                             <div className="grid">
                               <div className="font-bold text-base items-center mb-2">
                                 <span className="text-red-400 m-1">

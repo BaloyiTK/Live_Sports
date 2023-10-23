@@ -3,10 +3,12 @@ import Navbar from "./components/NavBar";
 import MainContent from "./components/MainContent";
 import Footer from "./components/Footer";
 import Leagues from "./components/Leagues";
-import { fetchLeagues, fetchNews } from "./api";
 import News from "./components/News";
 import { useDispatch, useSelector } from "react-redux";
 import { competitionNameActions, menuActions } from "./store";
+import { fetchLeagues, fetchNews } from "./api";
+import './index.css';
+import { FaNewspaper } from 'react-icons/fa';
 
 function App() {
   const [selectedDate, setSelectedDate] = useState(new Date());
@@ -19,13 +21,10 @@ function App() {
   const isCompetition = useSelector((state) => state.competitionName.name);
 
   console.log(leagues);
-  
 
   useEffect(() => {
-   
     if (isCompetition && isMenuOpen) {
       dispatch(menuActions.closeMenu());
-
     }
   }, [isCompetition]);
 
@@ -48,7 +47,7 @@ function App() {
         localStorage.setItem("leagues", JSON.stringify(matchesData));
       }
 
-      const cachedNewsData = localStorage.getItem("newss");
+      const cachedNewsData = localStorage.getItem("news");
       if (cachedNewsData) {
         const newsData = JSON.parse(cachedNewsData);
         setNews(newsData.topStories);
@@ -63,16 +62,15 @@ function App() {
   }, []);
 
   return (
-    <div>
+    <div className="relative">
       <header>
         <Navbar />
       </header>
       <main className="container w-full md:w-[80%] mx-auto">
         <div className="flex md:mt-5">
-        
           <div
             className={`md:w-[20%] md:block ${
-               isMenuOpen
+              isMenuOpen
                 ? "block absolute z-50 w-full"
                 : "hidden"
             }`}
@@ -89,8 +87,17 @@ function App() {
         </div>
       </main>
       <footer>
-        <Footer />
-      </footer>
+      
+      <Footer />
+    </footer>
+      {/* <footer className={`sticky-bottom-navbar p-4 ${isMenuOpen ? 'block' : 'hidden'}`}> */}
+      <div className="sticky-bottom-navbar p-4 md:hidden flex justify-center items-center">
+      <nav className="">
+       News
+      
+      </nav>
+    </div>
+ 
     </div>
   );
 }

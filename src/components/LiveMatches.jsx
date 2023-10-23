@@ -1,5 +1,4 @@
 import React from "react";
-import moment from "moment";
 import BallBouncingLoader from "./BallBouncingLoader";
 
 const LiveMatches = ({ liveMatches, loading }) => {
@@ -9,7 +8,7 @@ const LiveMatches = ({ liveMatches, loading }) => {
     <div className="bg-gray-200 w-[100%] rounded-lg md:p-4 shadow-2xl min-h-screen text-sm ">
       {loading ? (
         <div className="h-screen flex justify-center items-center text-black">
-            <BallBouncingLoader/>
+          <BallBouncingLoader />
         </div>
       ) : liveMatches && liveMatches.length === 0 ? (
         <div
@@ -45,10 +44,18 @@ const LiveMatches = ({ liveMatches, loading }) => {
                           key={index}
                         >
                           <div className="flex justify-center w-[30%]">
-                            {event.Eps === "HT" ? (
+                            {event.Eps === "HT" ||
+                            event.Eps === "FT" ||
+                            event.Eps === "NS" ? (
                               <div className="items-center flex ">
                                 <span className=" mr-2  w-2 h-2"></span>
-                                <span className="text-red-500 ">
+                                <span
+                                  className={`${
+                                    event.Eps === "NS"
+                                      ? "text-orange-500"
+                                      : "text-red-500"
+                                  }  `}
+                                >
                                   {event.Eps}
                                 </span>
                               </div>
