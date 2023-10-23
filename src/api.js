@@ -9,7 +9,8 @@ const options = {
   },
 };
 
-export const fetchLiveMatches = async () => {
+
+export const fetchLiveMatches = async () => { 
   try {
     const response = await fetch(`${baseUrl}/matches/v2/list-live`, options);
 
