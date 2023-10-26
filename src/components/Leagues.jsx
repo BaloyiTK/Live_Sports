@@ -5,7 +5,7 @@ import LeagueList from "./LeagueList";
 import Competitions from "./Competitions";
 import SearchBar from "./SearchBar";
 
-const Leagues = ({ leagues }) => {
+const Leagues = ({ leagues, loading }) => {
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedLeagueData, setSelectedLeagueData] = useState({
     name: "",
@@ -65,6 +65,7 @@ const Leagues = ({ leagues }) => {
           leagues={leagues}
           searchTerm={searchTerm}
           handleLeagueClick={handleLeagueClick}
+          loading = {loading}
         />
       )}
     </div>

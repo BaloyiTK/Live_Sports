@@ -1,6 +1,6 @@
 import { createSlice, configureStore } from "@reduxjs/toolkit";
 
-// Define the competitionNameSlice
+
 const competitionNameSlice = createSlice({
   name: "competitionName",
   initialState: { name: "" },
@@ -11,7 +11,7 @@ const competitionNameSlice = createSlice({
   },
 });
 
-// Define the menuSlice
+
 const menuSlice = createSlice({
   name: "menu",
   initialState: { isMenuOpen: false },
@@ -28,10 +28,10 @@ const menuSlice = createSlice({
   },
 });
 
-// Define the selectedTabSlice
+
 const selectedTabSlice = createSlice({
   name: "selectedTab",
-  initialState: "all", // Set the initial state to "all" or your desired default tab
+  initialState: "all", 
   reducers: {
     setSelectedTab(state, action) {
       return action.payload;

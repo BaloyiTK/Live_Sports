@@ -8,12 +8,14 @@ import { useDispatch, useSelector } from "react-redux";
 import { competitionNameActions, menuActions } from "./store";
 import { fetchLeagues, fetchNews } from "./api";
 import './index.css';
-import { FaNewspaper } from 'react-icons/fa';
+
 
 function App() {
   const [selectedDate, setSelectedDate] = useState(new Date());
   const [leagues, setLeagues] = useState();
   const [news, setNews] = useState();
+  const [loadingLeagues, setLoadingLeagues] = useState(false);
+  const [loadingNews, setLoadingNews] = useState(false);
 
   const dispatch = useDispatch();
 
@@ -27,33 +29,43 @@ function App() {
     }
   }, [isCompetition]);
 
-  // Callback function to receive the selected date from MainContent
+
   const handleDateChange = (date) => {
     setSelectedDate(date);
   };
 
   useEffect(() => {
     const fetchData = async () => {
+      setLoadingLeagues(true)
+      setLoadingNews(true)
       const cachedLeagueData = localStorage.getItem("leagues");
       if (cachedLeagueData) {
+    
         const matchesData = JSON.parse(cachedLeagueData);
-
         setLeagues(matchesData.Ccg);
+        setLoadingLeagues(false)
       } else {
+       
         const matchesData = await fetchLeagues();
         setLeagues(matchesData.Ccg);
-
         localStorage.setItem("leagues", JSON.stringify(matchesData));
+        setLoadingLeagues(false)
       }
 
-      const cachedNewsData = localStorage.getItem("news");
+      const cachedNewsData = localStorage.getItem("new");
       if (cachedNewsData) {
+       
         const newsData = JSON.parse(cachedNewsData);
         setNews(newsData.topStories);
+
+        setLoadingNews(false)
       } else {
+  
         const newsData = await fetchNews();
+        console.log(newsData)
         setNews(newsData.topStories);
         localStorage.setItem("news", JSON.stringify(newsData));
+        setLoadingNews(false)
       }
     };
 
@@ -74,14 +86,14 @@ function App() {
                 : "hidden"
             }`}
           >
-            <Leagues leagues={leagues} />
+            <Leagues leagues={leagues} loading = {loadingLeagues} />
           </div>
 
           <div className="w-full md:w-[50%]">
             <MainContent onDateChange={handleDateChange} />
           </div>
           <div className="w-[30%] hidden md:block">
-            <News news={news} />
+            <News news={news} loading = {loadingNews} />
           </div>
         </div>
       </main>

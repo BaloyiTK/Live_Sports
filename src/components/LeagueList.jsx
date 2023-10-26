@@ -1,6 +1,8 @@
 import React from "react";
+import BallBouncingLoader from "./BallBouncingLoader";
 
-const LeagueList = ({ leagues, searchTerm, handleLeagueClick }) => {
+const LeagueList = ({ leagues, searchTerm, handleLeagueClick, loading }) => {
+  
   if (!Array.isArray(leagues)) {
     console.error("leagues is not an array:", leagues);
     return null; // or handle this situation appropriately
@@ -12,7 +14,11 @@ const LeagueList = ({ leagues, searchTerm, handleLeagueClick }) => {
 
   return (
     <ul className="mt-2">
-      {filteredLeagues.map((league, index) => {
+      {loading ? (
+        <div className="h-screen flex justify-center items-center text-black">
+          <BallBouncingLoader />
+        </div>
+      ) :  filteredLeagues.map((league, index) => {
         const truncatedName = league.Cnm.length > 22 ? `${league.Cnm.substring(0, 22)}...` : league.Cnm;
         const imageUrl = `https://static.livescore.com/i2/fh/${league.Ccd}.jpg`;
 

@@ -6,8 +6,7 @@ import LiveMatches from "./LiveMatches";
 import Results from "./Results";
 import { useSelector, useDispatch } from "react-redux";
 import Table from "./Table";
-import CustomDatePicker from "./DatePicker"; // Import the DatePicker component
-
+import CustomDatePicker from "./DatePicker"; 
 import MatchesByLeague from "./LeagueFixture";
 import LeagueResults from "./LeagueResults";
 import { selectedTabActions } from "../store";
@@ -15,7 +14,7 @@ import { selectedTabActions } from "../store";
 const Tabs = ({ tab, selectedTab, onSelect, resetDate }) => {
   const isActive = selectedTab === tab.id;
 
-  const buttonClasses = `p-1.5 rounded-lg transition-all duration-300 ease-in-out ${
+  const buttonClasses = `p-2  font-bold  transition-all duration-300 ease-in-out ${
     isActive
       ? "bg-red-500 text-white  hover:text-white"
       : "bg-gray-200 text-gray-700"
@@ -34,8 +33,6 @@ const Tabs = ({ tab, selectedTab, onSelect, resetDate }) => {
   );
 };
 
-
-
 const MainContent = ({ onDateChange }) => {
   const [selectedDate, setSelectedDate] = useState(new Date());
   const [loading, setLoading] = useState(false);
@@ -48,11 +45,9 @@ const MainContent = ({ onDateChange }) => {
 
   useEffect(() => {
     if (competitionName) {
-  
       dispatch(selectedTabActions.setSelectedTab("fixture"));
-    }else{
+    } else {
       dispatch(selectedTabActions.setSelectedTab("all"));
-
     }
   }, [competitionName]);
 
@@ -118,10 +113,9 @@ const MainContent = ({ onDateChange }) => {
 
         switch (selectedTab) {
           case "all":
-
             setLoading(true);
 
-            setLoading(true)
+            setLoading(true);
 
             const cachedAllData = localStorage.getItem("allMatchess");
             if (cachedAllData) {
@@ -151,8 +145,7 @@ const MainContent = ({ onDateChange }) => {
             break;
 
           case "results":
-
-            setLoading(true)
+            setLoading(true);
             const cachedResultsData = localStorage.getItem("allMatchess");
 
             if (cachedResultsData) {
@@ -181,11 +174,12 @@ const MainContent = ({ onDateChange }) => {
   const handleDateChange = (date) => {
     setSelectedDate(date);
     onDateChange(date);
+    dispatch(selectedTabActions.setSelectedTab("all"));
   };
 
   return (
     <div className="p-2 md:p-4 bg-gray-900 text-white md:mx-1 md:rounded-lg">
-      <div className=" bg-gray-700 p-2 text-sm font-semibold">
+      <div className=" bg-gray-700 p-2 text-sm font-semibold rounded">
         {competitionName && (
           <div className="flex items-center">
             <img
@@ -203,27 +197,30 @@ const MainContent = ({ onDateChange }) => {
             </div>
           </div>
         )}
-        <div className="w-full flex items-center">
-          {tabs.map((tab) => (
-            <span className="m-1 hover:text-white" key={tab.id}>
-              <Tabs
-                tab={tab}
-                selectedTab={selectedTab}
-                onSelect={() =>
-                  dispatch(selectedTabActions.setSelectedTab(tab.id))
-                }
-                resetDate={resetDate}
-              />
-            </span>
-          ))}
-          {/* Use the CustomDatePicker component here */}
+        <div className="w-full flex items-center justify-between">
+          <div >
+            {tabs.map((tab) => (
+              <span  key={tab.id}>
+                <Tabs
+                  tab={tab}
+                  selectedTab={selectedTab}
+                  onSelect={() =>
+                    dispatch(selectedTabActions.setSelectedTab(tab.id))
+                  }
+                  resetDate={resetDate}
+                />
+              </span>
+            ))}
+          </div>
 
-          {!competitionName && (
-            <CustomDatePicker
-              selectedDate={selectedDate}
-              handleDateChange={handleDateChange}
-            />
-          )}
+          <div>
+            {!competitionName && (
+              <CustomDatePicker
+                selectedDate={selectedDate}
+                handleDateChange={handleDateChange}
+              />
+            )}
+          </div>
         </div>
       </div>
 

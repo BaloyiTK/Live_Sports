@@ -1,13 +1,19 @@
-import React from "react";
+import React, {memo} from "react";
 import moment from "moment/moment";
+import BallBouncingLoader from "./BallBouncingLoader";
 
-const News = ({ news }) => {
+const News = memo(({ news, loading }) => {
+
   return (
     <div className="hidden md:block min-h-screen mx-auto p-1 bg-gray-900 rounded shadow-2xl text-white">
       <h1 className="text-lg flex justify-center items-center font-semibold mb-5">
         Football News
       </h1>
-      {news &&
+      {loading ? (
+        <div className="h-screen flex justify-center items-center text-black">
+          <BallBouncingLoader />
+        </div>
+      ) : news &&
         news.map((news, i) => {
           if (news.categoryLabel === "Football") {
             return (
@@ -39,6 +45,6 @@ const News = ({ news }) => {
         })}
     </div>
   );
-};
+});
 
 export default News;
