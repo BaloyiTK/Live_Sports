@@ -14,7 +14,7 @@ import { selectedTabActions } from "../store";
 const Tabs = ({ tab, selectedTab, onSelect, resetDate }) => {
   const isActive = selectedTab === tab.id;
 
-  const buttonClasses = `p-2  font-bold  transition-all duration-300 ease-in-out ${
+  const buttonClasses = `p-1.5 border border-gray-400  font-bold  transition-all duration-300 ease-in-out ${
     isActive
       ? "bg-red-500 text-white  hover:text-white"
       : "bg-gray-200 text-gray-700"
@@ -179,7 +179,7 @@ const MainContent = ({ onDateChange }) => {
 
   return (
     <div className="p-2 md:p-4 bg-gray-900 text-white md:mx-1 md:rounded-lg">
-      <div className=" bg-gray-700 p-2 text-sm font-semibold rounded">
+      <div className=" bg-gray-700 p-2 text-sm font-semibold rounded ">
         {competitionName && (
           <div className="flex items-center">
             <img
