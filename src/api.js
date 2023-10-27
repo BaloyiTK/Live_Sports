@@ -1,10 +1,11 @@
 import moment from "moment";
 
+
 const baseUrl = "https://livescore6.p.rapidapi.com";
 const options = {
   method: "GET",
   headers: {
-    "X-RapidAPI-Key": "7610b7d986mshaa63b5f7902baf9p102d5fjsn85fd1c5fd17d",
+    'X-RapidAPI-Key': 'aa82e81b37msh813fbd8d43f9e93p11bec2jsn47bbab258f4f',
     "X-RapidAPI-Host": "livescore6.p.rapidapi.com",
   },
 };
