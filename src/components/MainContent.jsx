@@ -183,15 +183,15 @@ const MainContent = ({ onDateChange }) => {
         {competitionName && (
           <div className="flex items-center">
             <img
-              className="w-[25px] h-[15px] rounded-sm m-2"
+              className="w-[25px] h-[15px] rounded-sm mr-2"
               src={`https://static.livescore.com/i2/fh/${ccdValue}.jpg`}
               alt={"ccd"}
             />
             <div className="grid">
-              <span className="text-lg text-gray-100">
+              <span className="text-lg text-white">
                 {capitalizeFirstLetter(scdValue)}
               </span>
-              <span className="text-sm text-gray-300">
+              <span className="text-sm text-gray-100">
                 {capitalizeFirstLetter(ccdValue)}
               </span>
             </div>
