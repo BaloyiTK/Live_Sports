@@ -198,7 +198,7 @@ const MainContent = ({ onDateChange }) => {
           </div>
         )}
         <div className="w-full flex items-center justify-between">
-          <div className="mr-1" >
+          <div >
             {tabs.map((tab) => (
               <span  key={tab.id}>
                 <Tabs
@@ -213,7 +213,7 @@ const MainContent = ({ onDateChange }) => {
             ))}
           </div>
 
-          <div >
+          <div className="ml-2 " >
             {!competitionName && (
               <CustomDatePicker
                 selectedDate={selectedDate}
