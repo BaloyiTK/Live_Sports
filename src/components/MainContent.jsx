@@ -179,11 +179,11 @@ const MainContent = ({ onDateChange }) => {
 
   return (
     <div className="p-2 md:p-4 bg-gray-900 text-white md:mx-1 md:rounded-lg">
-      <div className=" bg-gray-700 p-2 text-sm font-semibold rounded ">
+      <div className=" bg-gray-800 p-4 text-sm font-semibold rounded ">
         {competitionName && (
           <div className="flex items-center">
             <img
-              className="w-[25px] h-[15px] rounded-sm mr-2"
+              className="w-[25px] h-[15px] mr-2"
               src={`https://static.livescore.com/i2/fh/${ccdValue}.jpg`}
               alt={"ccd"}
             />
