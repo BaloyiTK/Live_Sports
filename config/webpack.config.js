@@ -186,6 +186,9 @@ module.exports = function (webpackEnv) {
     return loaders;
   };
 
+
+
+
   return {
     target: ['browserslist'],
     // Webpack noise constrained to errors and warnings
@@ -293,6 +296,13 @@ module.exports = function (webpackEnv) {
       ],
     },
     resolve: {
+
+      fallback: {
+        "os": require.resolve("os-browserify/browser"),
+        "path": require.resolve("path-browserify"),
+        "stream": require.resolve("stream-browserify") 
+        // Add other fallbacks as needed
+      },
       // This allows you to set a fallback for where webpack should look for modules.
       // We placed these paths second because we want `node_modules` to "win"
       // if there are any conflicts. This matches Node resolution mechanism.
