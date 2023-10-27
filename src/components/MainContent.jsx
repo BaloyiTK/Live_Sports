@@ -213,7 +213,7 @@ const MainContent = ({ onDateChange }) => {
             ))}
           </div>
 
-          <div className="ml-2 " >
+          <div  >
             {!competitionName && (
               <CustomDatePicker
                 selectedDate={selectedDate}
