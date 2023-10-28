@@ -1,4 +1,5 @@
 import moment from "moment";
+require('dotenv').config(); 
 
 
 const baseUrl = "https://livescore6.p.rapidapi.com";
