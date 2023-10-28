@@ -1,13 +1,17 @@
 import moment from "moment";
-require('dotenv').config(); 
 
+
+const test = process.env
+
+console.log(test)
 
 const baseUrl = "https://livescore6.p.rapidapi.com";
 const options = {
   method: "GET",
   headers: {
-    'X-RapidAPI-Key': 'aa82e81b37msh813fbd8d43f9e93p11bec2jsn47bbab258f4f',
-    "X-RapidAPI-Host": "livescore6.p.rapidapi.com",
+   //'X-RapidAPI-Key': 'aa82e81b37msh813fbd8d43f9e93p11bec2jsn47bbab258f4f',
+  'X-RapidAPI-Key': process.env.API_Key,
+    "X-RapidAPI-Host": process.env.API_Host,
   },
 };
 
