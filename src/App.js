@@ -8,6 +8,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { competitionNameActions, menuActions } from "./store";
 import { fetchLeagues, fetchNews } from "./api";
 import './index.css';
+import dotenv from "dotenv"
+dotenv.config()
 
 
 function App() {
@@ -62,7 +64,7 @@ function App() {
       } else {
   
         const newsData = await fetchNews();
-        console.log(newsData)
+    
         setNews(newsData.topStories);
         localStorage.setItem("news", JSON.stringify(newsData));
         setLoadingNews(false)
