@@ -117,7 +117,7 @@ const MainContent = ({ onDateChange }) => {
 
             setLoading(true);
 
-            const cachedAllData = localStorage.getItem("allMatches");
+            const cachedAllData = localStorage.getItem("allMatchess");
             if (cachedAllData) {
               const { Stages } = JSON.parse(cachedAllData);
               setAllMatches(Stages);
@@ -132,7 +132,7 @@ const MainContent = ({ onDateChange }) => {
 
           case "live":
             setLoading(true);
-            const cachedLiveData = localStorage.getItem("liveMatches");
+            const cachedLiveData = localStorage.getItem("liveMatchess");
             if (cachedLiveData) {
               setLiveMatches(JSON.parse(cachedLiveData));
               setLoading(false);
@@ -146,7 +146,7 @@ const MainContent = ({ onDateChange }) => {
 
           case "results":
             setLoading(true);
-            const cachedResultsData = localStorage.getItem("allMatches");
+            const cachedResultsData = localStorage.getItem("allMatchess");
 
             if (cachedResultsData) {
               const { Stages } = JSON.parse(cachedResultsData);
