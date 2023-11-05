@@ -179,7 +179,7 @@ const MainContent = ({ onDateChange }) => {
 
   return (
     <div className="p-2 md:p-4 bg-gray-900 text-white md:mx-1 md:rounded-lg">
-      <div className=" bg-gray-800 p-4 text-sm font-semibold rounded w-full">
+      <div className=" bg-gray-800 p-4 text-sm font-semibold rounded ">
         {competitionName && (
           <div className="flex items-center">
             <img
@@ -198,7 +198,7 @@ const MainContent = ({ onDateChange }) => {
           </div>
         )}
         <div className="  flex items-center justify-center">
-          <div className="w-[50%]  flex ">
+          <div className="w-[50%] md:w-full flex ">
             {tabs.map((tab) => (
               <span key={tab.id}>
                 <Tabs
@@ -213,7 +213,7 @@ const MainContent = ({ onDateChange }) => {
             ))}
           </div>
 
-          <div className="w-[50%]">
+          <div className="w-[50%] md:w-full">
             {!competitionName && (
               <CustomDatePicker
                 selectedDate={selectedDate}

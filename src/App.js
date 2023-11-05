@@ -51,7 +51,7 @@ function App() {
         setLoadingLeagues(false)
       }
 
-      const cachedNewsData = localStorage.getItem("new");
+      const cachedNewsData = localStorage.getItem("news");
       if (cachedNewsData) {
        
         const newsData = JSON.parse(cachedNewsData);
