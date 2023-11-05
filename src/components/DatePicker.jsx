@@ -1,7 +1,7 @@
 import React, { useRef } from "react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-import { BiCalendar } from 'react-icons/bi';
+import { BiCalendar } from "react-icons/bi";
 
 const CustomDatePicker = ({ selectedDate, handleDateChange }) => {
   const datePickerRef = useRef(null);

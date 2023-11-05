@@ -1,14 +1,25 @@
 import React, { useMemo, useCallback } from "react";
 import { IoIosSearch, IoIosClose, IoIosArrowBack } from "react-icons/io";
 
-const SearchBar = ({ searchTerm, setSearchTerm, handleClear, handleBack, isBackVisible }) => {
+const SearchBar = ({
+  searchTerm,
+  setSearchTerm,
+  handleClear,
+  handleBack,
+  isBackVisible,
+}) => {
   const inputClasses = useMemo(() => {
-    return `${isBackVisible ? 'font-bold text-black' : ''} py-1 w-full pl-8 text-black rounded border border-gray-300 focus:outline-none focus:border-blue-500 focus:ring focus:ring-blue-200`;
+    return `${
+      isBackVisible ? "font-bold text-black" : ""
+    } py-1 w-full pl-8 text-black rounded border border-gray-300 focus:outline-none focus:border-blue-500 focus:ring focus:ring-blue-200`;
   }, [isBackVisible]);
 
   const BackArrowIcon = useMemo(() => {
     return (
-      <div className="absolute inset-y-0 left-2 flex items-center cursor-pointer font-bold text-black" onClick={handleBack}>
+      <div
+        className="absolute inset-y-0 left-2 flex items-center cursor-pointer font-bold text-black"
+        onClick={handleBack}
+      >
         <IoIosArrowBack className="text-xl font-extrabold text-black" />
       </div>
     );
@@ -24,7 +35,10 @@ const SearchBar = ({ searchTerm, setSearchTerm, handleClear, handleBack, isBackV
 
   const ClearIcon = useMemo(() => {
     return (
-      <div className="absolute inset-y-0 right-12 flex items-center text-white cursor-pointer" onClick={handleClear}>
+      <div
+        className="absolute inset-y-0 right-12 flex items-center text-white cursor-pointer"
+        onClick={handleClear}
+      >
         <IoIosClose className="absolute left-5 text-3xl font-extrabold text-black" />
       </div>
     );
