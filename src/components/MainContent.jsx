@@ -49,7 +49,7 @@ const MainContent = ({ onDateChange }) => {
     } else {
       dispatch(selectedTabActions.setSelectedTab("all"));
     }
-  }, [competitionName]);
+  }, [competitionName, dispatch]);
 
   // Your string containing "Ccd" and "Scd"
   const inputString = competitionName;
