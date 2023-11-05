@@ -6,7 +6,7 @@ import LiveMatches from "./LiveMatches";
 import Results from "./Results";
 import { useSelector, useDispatch } from "react-redux";
 import Table from "./Table";
-import CustomDatePicker from "./DatePicker"; 
+import CustomDatePicker from "./DatePicker";
 import MatchesByLeague from "./LeagueFixture";
 import LeagueResults from "./LeagueResults";
 import { selectedTabActions } from "../store";
@@ -179,7 +179,7 @@ const MainContent = ({ onDateChange }) => {
 
   return (
     <div className="p-2 md:p-4 bg-gray-900 text-white md:mx-1 md:rounded-lg">
-      <div className=" bg-gray-800 p-4 text-sm font-semibold rounded ">
+      <div className=" bg-gray-800 p-4 text-sm font-semibold rounded w-full">
         {competitionName && (
           <div className="flex items-center">
             <img
@@ -197,10 +197,10 @@ const MainContent = ({ onDateChange }) => {
             </div>
           </div>
         )}
-        <div className="w-full flex items-center justify-between">
-          <div >
+        <div className="  flex items-center justify-center">
+          <div className="w-[50%]  flex ">
             {tabs.map((tab) => (
-              <span  key={tab.id}>
+              <span key={tab.id}>
                 <Tabs
                   tab={tab}
                   selectedTab={selectedTab}
@@ -213,7 +213,7 @@ const MainContent = ({ onDateChange }) => {
             ))}
           </div>
 
-          <div  >
+          <div className="w-[50%]">
             {!competitionName && (
               <CustomDatePicker
                 selectedDate={selectedDate}
