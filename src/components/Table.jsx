@@ -65,8 +65,8 @@ const Table = () => {
                 <th className="py-1 text-center">W</th>
                 <th className="py-1 text-center">D</th>
                 <th className="py-1 text-center">L</th>
-                <th className="py-1 text-center">F</th>
-                <th className="py-1 text-center">A</th>
+                <th className="py-1 text-center hidden md:table-cell">F</th>
+                <th className="py-1 text-center hidden md:table-cell">A</th>
                 <th className="py-1 text-center">GD</th>
                 <th className="py-1 text-center">PTS</th>
               </tr>
@@ -83,8 +83,9 @@ const Table = () => {
                   <td className="py-1 text-center">{team.win}</td>
                   <td className="py-1 text-center">{team.drw}</td>
                   <td className="py-1 text-center">{team.lst}</td>
-                  <td className="py-1 text-center">{team.gf}</td>
-                  <td className="py-1 text-center">{team.ga}</td>
+                  <td className="py-1 text-center hidden md:table-cell">{team.gf}</td>
+<td className="py-1 text-center hidden md:table-cell">{team.ga}</td>
+
                   <td className="py-1 text-center">{team.gd}</td>
                   <td className="py-1 text-center">{team.pts}</td>
                 </tr>

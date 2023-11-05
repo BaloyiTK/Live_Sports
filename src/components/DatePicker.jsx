@@ -22,7 +22,7 @@ const CustomDatePicker = ({ selectedDate, handleDateChange }) => {
         className="p-1.5 border bg-gray-300 text-gray-900 w-full"
         ref={datePickerRef}
       />
-      <div className="absolute right-2 md:right-7 ">
+      <div className="absolute right-[2%] md:right-[12%] ">
         <BiCalendar size={25} onClick={handleCalendarIconClick} />
       </div>
     </div>
